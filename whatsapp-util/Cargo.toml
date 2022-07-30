@@ -1,0 +1,28 @@
+[package]
+name = "whatsapp-rs-util"
+version = "0.0.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+# Security
+rust-crypto = "0.2.36"
+md5 = "0.7.0"
+rand_core = "0.5.0"
+rand = "0.8.5"
+
+x25519-dalek = { version = "1.2.0", features = ["reusable_secrets"] }
+ed25519-dalek = "1.0.1"
+
+aes-gcm = "0.9.4"
+
+# Error Handling
+anyhow = "1.0.58"
+thiserror = "1.0.31"
+
+# Protobuf
+protobuf = { version = "3.1.0", features = ["with-bytes"] }
+serde = { version = "1.0.140", features = ["derive"] }
+bytebuffer = "0.2.1"

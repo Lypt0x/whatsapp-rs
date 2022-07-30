@@ -1,7 +1,7 @@
 [workspace]
 members = [
-    "http",
-    "websocket",
-    "util",
-    "client"
+    "whatsapp-http",
+    "whatsapp-websocket",
+    "whatsapp-util",
+    "whatsapp-client"
 ]

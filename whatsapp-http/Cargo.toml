@@ -1,0 +1,18 @@
+[package]
+name = "whatsapp-rs-http"
+version = "0.0.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hyper = { version = "0.14.20", features = ["full"] }
+hyper-tls = "0.5.0"
+tokio = { version = "1.20.0", features = ["full"] }
+anyhow = "1.0.58"
+
+serde = { version = "1.0.140", features = ["derive"] }
+serde_json = "1.0.82"
+
+whatsapp-rs-util = { path = "../whatsapp-util" }
+async-trait = "0.1.56"
