@@ -12,13 +12,13 @@ use crate::protobuf::whatsapp::companion_props::CompanionPropsPlatformType;
 use crate::protobuf::whatsapp::user_agent::{UserAgentPlatform, UserAgentReleaseChannel};
 use crate::protobuf::whatsapp::web_info::WebInfoWebSubPlatform;
 use crate::protobuf::whatsapp::{
-    AppVersion, ClientFinish, ClientPayload, CompanionProps, CompanionRegData, HandshakeMessage,
-    UserAgent, WebInfo,
+    AppVersion, ClientFinish, ClientHello, ClientPayload, CompanionProps, CompanionRegData,
+    HandshakeMessage, UserAgent, WebInfo,
 };
 pub use crate::security::keypair::Keypair;
 use crate::security::{aes, hash, hkdf};
 pub use anyhow::Result;
-use bytebuffer::ByteBuffer;
+
 use protobuf::{EnumOrUnknown, Message, MessageField};
 
 pub struct Handshake<'a> {
@@ -27,7 +27,6 @@ pub struct Handshake<'a> {
     hash: [u8; 32],
     crypto_key: [u8; 32],
     salt: [u8; 32],
-    intro: bool,
     iv: u64,
 }
 
@@ -38,11 +37,11 @@ impl<'a> Handshake<'a> {
             hash: PROTOCOL,
             crypto_key: PROTOCOL,
             salt: PROTOCOL,
-            intro: true,
             iv: 0,
         };
 
-        auth.rehash(&PROLOGUE).rehash(&PROTOCOL)
+        let public_key = auth.credentials.ephemeral_keypair.public.to_bytes();
+        auth.rehash(&PROLOGUE).rehash(&public_key)
     }
 
     pub fn ephemeral_key(&'_ self) -> &'_ Keypair {
@@ -63,6 +62,7 @@ impl<'a> Handshake<'a> {
 
     pub fn decrypt(&mut self, input: &[u8]) -> Result<Vec<u8>> {
         let decrypted = aes::decrypt(self.crypto_key, self.hash, self.iv_as_nonce(), input)?;
+        self.iv += 1;
 
         self.rehash_ref(input);
         Ok(decrypted)
@@ -70,41 +70,27 @@ impl<'a> Handshake<'a> {
 
     pub fn encrypt(&mut self, input: &[u8]) -> Result<Vec<u8>> {
         let decrypted = aes::encrypt(self.crypto_key, self.hash, self.iv_as_nonce(), input)?;
+        self.iv += 1;
 
         self.rehash_ref(&decrypted);
         Ok(decrypted)
     }
 
-    pub fn encode(&mut self, data: HandshakeMessage) -> Result<Vec<u8>> {
-        let mut buffer = ByteBuffer::from_bytes(if self.intro {
-            self.intro = false;
-            &PROLOGUE
-        } else {
-            &[]
-        });
-
-        let data = data.write_to_bytes()?;
-        buffer.write_i32((data.len() >> 16) as i32);
-        buffer.write_i16((65535 & data.len()) as i16);
-        buffer.write_bytes(&data);
-        Ok(buffer.to_bytes())
-    }
-
     fn iv_as_nonce(&self) -> [u8; 12] {
         let mut nonce = [0u8; 12];
-        let src: [u8; 8] = self.iv.to_le_bytes();
+        let src: [u8; 8] = self.iv.to_be_bytes();
 
         nonce[4..].copy_from_slice(&src);
         nonce
     }
 
     pub fn rehash(mut self, input: &[u8]) -> Self {
-        self.hash = crate::security::hash::sha256(&self.hash, input);
+        self.hash = hash::sha256(&self.hash, input);
         self
     }
 
     pub fn rehash_ref(&mut self, input: &[u8]) -> &mut Self {
-        self.hash = crate::security::hash::sha256(&self.hash, input);
+        self.hash = hash::sha256(&self.hash, input);
         self
     }
 
@@ -118,6 +104,13 @@ impl<'a> Handshake<'a> {
     pub fn create_finish_handshake(finish: ClientFinish) -> HandshakeMessage {
         HandshakeMessage {
             clientFinish: MessageField::some(finish),
+            ..Default::default()
+        }
+    }
+
+    pub fn create_hello_handshake(hello: ClientHello) -> HandshakeMessage {
+        HandshakeMessage {
+            clientHello: MessageField::some(hello),
             ..Default::default()
         }
     }
@@ -139,7 +132,7 @@ impl<'a> Handshake<'a> {
 
         let mut reg_data = CompanionRegData::new();
         let mut companion_props = CompanionProps::new();
-        companion_props.os = String::from("whatsapp-rs").into();
+        companion_props.os = String::from("whatsapprs").into();
         companion_props.platformType =
             EnumOrUnknown::from(CompanionPropsPlatformType::DESKTOP).into();
         companion_props.requireFullSync = false.into();

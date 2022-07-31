@@ -4,18 +4,11 @@ use whatsapp_rs_util::handshake::Handshake;
 
 use anyhow::{anyhow, Result};
 use futures::{Sink, SinkExt};
-use tokio_tungstenite::tungstenite::{Error, Message};
-use whatsapp_rs_util::protobuf::whatsapp::client_payload::ClientPayloadConnectType;
-use whatsapp_rs_util::protobuf::whatsapp::companion_props::CompanionPropsPlatformType;
-use whatsapp_rs_util::protobuf::whatsapp::user_agent::{
-    UserAgentPlatform, UserAgentReleaseChannel,
-};
-use whatsapp_rs_util::protobuf::whatsapp::web_info::WebInfoWebSubPlatform;
+use tokio_tungstenite::tungstenite::Message;
+use whatsapp_rs_util::message;
+
 use whatsapp_rs_util::protobuf::whatsapp::MessageParser;
-use whatsapp_rs_util::protobuf::whatsapp::{
-    ClientFinish, ClientPayload, CompanionProps, CompanionRegData, HandshakeMessage, UserAgent,
-    WebInfo,
-};
+use whatsapp_rs_util::protobuf::whatsapp::{ClientFinish, HandshakeMessage};
 
 pub struct AuthHandler<'a> {
     handshake: Handshake<'a>,
@@ -38,6 +31,7 @@ impl<'a> AuthHandler<'a> {
 
         self.mix_ephemeral_shared(handshake.serverHello.ephemeral());
         self.mix_static(handshake.serverHello.static_())?;
+
         self.process_payload(handshake.serverHello.payload())?;
 
         let encrypted_key = self
@@ -53,7 +47,7 @@ impl<'a> AuthHandler<'a> {
         client_finish.payload = encrypted_payload.into();
 
         let handshake_request = Handshake::create_finish_handshake(client_finish);
-        let encoded = self.handshake.encode(handshake_request)?;
+        let encoded = message::codec::encode(false, handshake_request)?;
 
         Ok(sink
             .send(Message::Binary(encoded))
@@ -67,6 +61,7 @@ impl<'a> AuthHandler<'a> {
             .ephemeral_key_mut()
             .exchange(their_ephemeral)
             .to_bytes();
+
         self.handshake.mix(&shared);
     }
 

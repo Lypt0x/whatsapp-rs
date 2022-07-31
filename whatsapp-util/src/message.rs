@@ -1,5 +1,7 @@
 use bytebuffer::ByteBuffer;
 
+pub mod codec;
+
 pub struct BinaryMessage {
     pub raw: ByteBuffer,
     pub decoded: Vec<Vec<u8>>,

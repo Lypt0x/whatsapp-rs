@@ -77,6 +77,7 @@ impl From<[u8; 32]> for PublicKeyWrapper {
 
 impl From<&'_ [u8]> for PublicKeyWrapper {
     fn from(input: &'_ [u8]) -> Self {
+        let input: [u8; 32] = input.try_into().unwrap();
         input.try_into().unwrap()
     }
 }

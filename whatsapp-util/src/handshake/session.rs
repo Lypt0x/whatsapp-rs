@@ -10,6 +10,11 @@ pub struct Session {
 
 impl Default for Session {
     fn default() -> Self {
-        todo!()
+        Self {
+            write_key: [0u8; 32],
+            read_key: [0u8; 32],
+            read_cnt: AtomicU32::new(0),
+            write_cnt: AtomicU32::new(0),
+        }
     }
 }
