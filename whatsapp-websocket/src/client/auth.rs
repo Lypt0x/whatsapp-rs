@@ -1,9 +1,10 @@
+use std::fmt::Debug;
 use whatsapp_rs_util::handshake::credentials::Credentials;
 use whatsapp_rs_util::handshake::Handshake;
 
-use anyhow::Result;
-use futures::SinkExt;
-use tokio_tungstenite::tungstenite::Message;
+use anyhow::{anyhow, Result};
+use futures::{Sink, SinkExt};
+use tokio_tungstenite::tungstenite::{Error, Message};
 use whatsapp_rs_util::protobuf::whatsapp::client_payload::ClientPayloadConnectType;
 use whatsapp_rs_util::protobuf::whatsapp::companion_props::CompanionPropsPlatformType;
 use whatsapp_rs_util::protobuf::whatsapp::user_agent::{
@@ -27,9 +28,10 @@ impl<'a> AuthHandler<'a> {
         }
     }
 
-    pub async fn login<S>(&mut self, payload: &[u8], mut sink: &mut S) -> Result<()>
+    pub async fn login<S>(&mut self, payload: &[u8], sink: &mut S) -> Result<()>
     where
         S: SinkExt<Message> + Unpin,
+        <S as Sink<Message>>::Error: Debug,
     {
         let handshake = HandshakeMessage::parse_from_bytes(payload)?;
         self.handshake.rehash_ref(handshake.serverHello.ephemeral());
@@ -56,7 +58,7 @@ impl<'a> AuthHandler<'a> {
         Ok(sink
             .send(Message::Binary(encoded))
             .await
-            .map_err(Into::into)?)
+            .map_err(|err| anyhow!("Sink error: {:?}", err))?)
     }
 
     fn mix_ephemeral_shared(&mut self, their_ephemeral: &[u8]) {
