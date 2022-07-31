@@ -5,6 +5,7 @@ use whatsapp_rs_util::handshake::Handshake;
 use anyhow::{anyhow, Result};
 use futures::{Sink, SinkExt};
 use tokio_tungstenite::tungstenite::Message;
+use whatsapp_rs_util::handshake::session::Session;
 use whatsapp_rs_util::message;
 
 use whatsapp_rs_util::protobuf::whatsapp::MessageParser;
@@ -15,9 +16,9 @@ pub struct AuthHandler<'a> {
 }
 
 impl<'a> AuthHandler<'a> {
-    pub fn new(credentials: &'a mut Credentials) -> Self {
+    pub fn new(session: &'a mut Session, credentials: &'a mut Credentials) -> Self {
         Self {
-            handshake: Handshake::new(credentials),
+            handshake: Handshake::new(session, credentials),
         }
     }
 
@@ -47,7 +48,9 @@ impl<'a> AuthHandler<'a> {
         client_finish.payload = encrypted_payload.into();
 
         let handshake_request = Handshake::create_finish_handshake(client_finish);
-        let encoded = message::codec::encode(false, handshake_request)?;
+        let encoded = message::codec::encode_frame(false, &handshake_request.write_to_bytes()?)?;
+
+        self.handshake.finish();
 
         Ok(sink
             .send(Message::Binary(encoded))

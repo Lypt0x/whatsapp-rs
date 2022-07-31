@@ -9,8 +9,9 @@ use tokio_tungstenite::tungstenite::Message;
 use whatsapp_rs_util::handshake::credentials::Credentials;
 use whatsapp_rs_util::handshake::Handshake;
 use whatsapp_rs_util::message;
-use whatsapp_rs_util::message::BinaryMessage;
-use whatsapp_rs_util::protobuf::whatsapp::ClientHello;
+use whatsapp_rs_util::message::codec::NodeCodec;
+
+use whatsapp_rs_util::protobuf::whatsapp::{ClientHello, MessageParser};
 
 pub mod auth;
 
@@ -62,7 +63,7 @@ impl WebSocketClient {
             .to_vec()
             .into();
         let hello_handshake = Handshake::create_hello_handshake(hello);
-        let encoded_hello = message::codec::encode(true, hello_handshake)?;
+        let encoded_hello = message::codec::encode_frame(true, &hello_handshake.write_to_bytes()?)?;
         websocket.send(Message::Binary(encoded_hello)).await?;
 
         while let Some(message) = websocket.next().await {
@@ -73,8 +74,8 @@ impl WebSocketClient {
                         break;
                     }
 
-                    let message = BinaryMessage::new(payload);
-                    if message.decoded.is_empty() {
+                    let message = message::codec::decode_frame(payload);
+                    if message.is_empty() {
                         println!("Could not decode message");
                         break;
                     }
@@ -82,16 +83,22 @@ impl WebSocketClient {
                     if self.state == State::Handshake {
                         println!("Logging in..");
 
-                        let decoded = message::codec::decode(payload);
-                        let decoded = decoded.first().expect("Decode failure");
+                        let decoded = message.first().expect("Decode failure");
 
-                        let mut auth = AuthHandler::new(&mut self.credentials);
+                        let mut auth =
+                            AuthHandler::new(self.session.as_mut().unwrap(), &mut self.credentials);
 
                         auth.login(decoded, &mut websocket).await?;
 
                         self.state = State::Connected;
                     } else {
-                        println!("Connected: {:?}", message.decoded);
+                        println!("Connected, node");
+                        for decoded in message {
+                            let mut codec =
+                                NodeCodec::new(&decoded, self.session.as_ref().unwrap())?;
+                            println!("{:?}", codec.decode()?);
+                        }
+
                         break;
                     }
                 }

@@ -15,6 +15,7 @@ rand = "0.8.5"
 
 x25519-dalek = { version = "1.2.0", features = ["reusable_secrets"] }
 ed25519-dalek = "1.0.1"
+deflate = "1.0.0"
 
 aes-gcm = "0.9.4"
 
@@ -26,3 +27,6 @@ thiserror = "1.0.31"
 protobuf = { version = "3.1.0", features = ["with-bytes"] }
 serde = { version = "1.0.140", features = ["derive"] }
 bytebuffer = "0.2.1"
+
+# Serialization
+serde_json = "1.0.82"
