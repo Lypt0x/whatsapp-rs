@@ -13,31 +13,31 @@ pub(crate) use serde_json::Value;
 pub(crate) use anyhow::bail;
 
 pub(crate) use crate::model::*;
+use crate::model::session_store::TrafficType;
 pub(crate) use crate::security::*;
 pub(crate) use crate::util::*;
-pub(crate) use crate::security::AsNonce;
 pub(crate) use super::node::*;
 
 pub struct NodeCodec<'a> {
-    pub session: &'a mut Session
+    pub store: &'a mut SessionStore
 }
 
 // TODO: frame codec in front of node codec
 impl<'a> NodeCodec<'a> {
     pub fn encode(&mut self, node: Node) -> Result<Vec<u8>> {
-        let encoded = NodeEncoder::new(node).encode();
+        let encoded = NodeEncoder::new(node).encode()?;
 
         aes::encrypt_no_hash(
-            self.session.read_key,
-            self.session.read_cnt.get_increment_nonce_mut(),
+            self.store.encode_key,
+            self.store.count_nonce(TrafficType::Ingoing),
             &encoded,
         )
     }
 
     pub fn decode(&mut self, input: &[u8]) -> Result<Node> {
         let buffer = aes::decrypt_no_hash(
-            self.session.read_key,
-            self.session.read_cnt.get_increment_nonce_mut(),
+            self.store.decode_key,
+            self.store.count_nonce(TrafficType::Outgoing),
             input,
         )?;
 

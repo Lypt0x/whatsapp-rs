@@ -1,7 +1,7 @@
 use serde_json::Value;
 use std::collections::HashMap;
 
-#[derive(serde::Serialize, serde::Deserialize, Debug)]
+#[derive(serde::Serialize, serde::Deserialize, Debug, Eq, PartialEq, Clone)]
 pub struct Node {
     description: String,
     attributes: HashMap<String, Value>,
@@ -35,6 +35,18 @@ impl Node {
             attributes,
             content: Value::Null,
         }
+    }
+
+    pub fn description(&self) -> &str {
+        self.description.as_str()
+    }
+
+    pub fn attributes_clone(&self) -> HashMap<String, Value> {
+        self.attributes.clone()
+    }
+
+    pub fn size(&self) -> usize {
+        2 * self.attributes.len() + !self.content.is_null() as usize + 1
     }
 
     pub fn id(&self) -> Option<&str> {

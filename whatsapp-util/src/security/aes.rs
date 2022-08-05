@@ -1,7 +1,7 @@
 use super::*;
 
 use aes_gcm::{
-    aead::{Aead, NewAead},
+    aead::{Aead, NewAead, Payload},
     Aes256Gcm, Key, Nonce,
 };
 

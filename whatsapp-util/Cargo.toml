@@ -18,6 +18,7 @@ ed25519-dalek = "1.0.1"
 deflate = "1.0.0"
 
 aes-gcm = "0.9.4"
+regex = "1.6.0"
 
 # Error Handling
 anyhow = "1.0.58"

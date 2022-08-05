@@ -1,7 +1,7 @@
 use super::*;
 
 pub struct NodeDecoder {
-	pub(super) buffer: ByteBuffer
+	pub(crate) buffer: ByteBuffer
 }
 
 impl NodeDecoder {

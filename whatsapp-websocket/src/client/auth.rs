@@ -5,8 +5,8 @@ use whatsapp_rs_util::binary::handshake::Handshake;
 use anyhow::{anyhow, Result};
 use futures::{Sink, SinkExt};
 use tokio_tungstenite::tungstenite::Message;
-use whatsapp_rs_util::model::session::Session;
 use whatsapp_rs_util::binary;
+use whatsapp_rs_util::model::SessionStore;
 
 use whatsapp_rs_util::protobuf::whatsapp::MessageParser;
 use whatsapp_rs_util::protobuf::whatsapp::{ClientFinish, HandshakeMessage};
@@ -16,9 +16,9 @@ pub struct AuthHandler<'a> {
 }
 
 impl<'a> AuthHandler<'a> {
-    pub fn new(session: &'a mut Session, credentials: &'a mut Credentials) -> Self {
+    pub fn new(store: &'a mut SessionStore, credentials: &'a mut Credentials) -> Self {
         Self {
-            handshake: Handshake::new(session, credentials),
+            handshake: Handshake::new(store, credentials),
         }
     }
 
@@ -28,7 +28,7 @@ impl<'a> AuthHandler<'a> {
         <S as Sink<Message>>::Error: Debug,
     {
         let handshake = HandshakeMessage::parse_from_bytes(payload)?;
-        self.handshake.rehash_ref(handshake.serverHello.ephemeral());
+        self.handshake.rehash_mut(handshake.serverHello.ephemeral());
 
         self.mix_ephemeral_shared(handshake.serverHello.ephemeral());
         self.mix_static(handshake.serverHello.static_())?;
@@ -50,7 +50,7 @@ impl<'a> AuthHandler<'a> {
         let handshake_request = Handshake::create_finish_handshake(client_finish);
         let encoded = binary::codec::encode_frame(false, &handshake_request.write_to_bytes()?)?;
 
-        self.handshake.finish();
+        self.handshake.finish()?;
 
         Ok(sink
             .send(Message::Binary(encoded))

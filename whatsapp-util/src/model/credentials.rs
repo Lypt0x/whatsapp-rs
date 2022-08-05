@@ -1,4 +1,4 @@
-use crate::model::session::Session;
+use crate::binary::session::Session;
 use crate::security::keypair::{Keypair, SignedKeypair};
 use rand::Rng;
 

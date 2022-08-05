@@ -1,6 +1,6 @@
 use tokio_tungstenite::tungstenite::http::header::*;
 use tokio_tungstenite::tungstenite::http::Request;
-use whatsapp_rs_util::model::session::Session;
+use whatsapp_rs_util::binary::session::Session;
 
 use crate::client::auth::AuthHandler;
 use anyhow::Result;
@@ -86,24 +86,24 @@ impl WebSocketClient {
                         let decoded = message.first().expect("Decode failure");
 
                         let mut auth =
-                            AuthHandler::new(self.session.as_mut().unwrap(), &mut self.credentials);
+                            AuthHandler::new(&mut self.session.as_mut().unwrap().store, &mut self.credentials);
 
                         auth.login(decoded, &mut websocket).await?;
 
                         self.state = State::Connected;
                     } else {
                         println!("Connected, node");
-                        let mut decoder = NodeCodec { session: self.session.as_mut().unwrap() };
+                        let mut decoder = NodeCodec { store: &mut self.session.as_mut().unwrap().store };
 
                         for decoded in message {
-                            decoder.decode(&decoded);
+                            println!("{:?}", decoder.decode(&decoded));
                         }
 
                         break;
                     }
                 }
                 _ => {
-                    println!("Unknown binary received: {binary:?}")
+                    println!("Unknown binary received: {message:?}")
                 }
             }
         }

@@ -14,8 +14,8 @@ use crate::protobuf::whatsapp::{
 use crate::security::keypair::Keypair;
 use crate::security::{aes, hash, hkdf};
 
-use crate::model::session::Session;
 use protobuf::{EnumOrUnknown, Message, MessageField};
+use crate::model::SessionStore;
 
 pub use crate::Result;
 use crate::security::AsNonce;
@@ -23,7 +23,7 @@ use super::{PROTOCOL, PROLOGUE};
 
 pub struct Handshake<'a> {
     pub credentials: &'a mut Credentials,
-    pub session: &'a mut Session,
+    pub session: &'a mut SessionStore,
 
     hash: [u8; 32],
     crypto_key: [u8; 32],
@@ -32,10 +32,10 @@ pub struct Handshake<'a> {
 }
 
 impl<'a> Handshake<'a> {
-    pub fn new(session: &'a mut Session, credentials: &'a mut Credentials) -> Self {
+    pub fn new(store: &'a mut SessionStore, credentials: &'a mut Credentials) -> Self {
         let auth = Self {
             credentials,
-            session,
+            session: store,
             hash: PROTOCOL,
             crypto_key: PROTOCOL,
             salt: PROTOCOL,
@@ -44,6 +44,10 @@ impl<'a> Handshake<'a> {
 
         let public_key = auth.credentials.ephemeral_keypair.public.to_bytes();
         auth.rehash(&PROLOGUE).rehash(&public_key)
+    }
+
+    pub fn finish(&mut self) -> Result<()> {
+        self.session.update(self.salt)
     }
 
     pub fn ephemeral_key(&'_ self) -> &'_ Keypair {
@@ -68,7 +72,7 @@ impl<'a> Handshake<'a> {
             self.iv.get_increment_nonce_mut(), input
         )?;
 
-        self.rehash_ref(input);
+        self.rehash_mut(input);
         Ok(decrypted)
     }
 
@@ -78,7 +82,7 @@ impl<'a> Handshake<'a> {
             self.iv.get_increment_nonce_mut(), input
         )?;
 
-        self.rehash_ref(&decrypted);
+        self.rehash_mut(&decrypted);
         Ok(decrypted)
     }
 
@@ -87,15 +91,9 @@ impl<'a> Handshake<'a> {
         self
     }
 
-    pub fn rehash_ref(&mut self, input: &[u8]) -> &mut Self {
+    pub fn rehash_mut(&mut self, input: &[u8]) -> &mut Self {
         self.hash = hash::sha256(&self.hash, input);
         self
-    }
-
-    pub fn finish(&mut self) {
-        let expanded = hkdf::expand_extract(self.salt, &[]);
-        self.session.write_key = expanded.as_ref()[..32].try_into().unwrap();
-        self.session.read_key = expanded.as_ref()[32..].try_into().unwrap();
     }
 
     pub fn mix(&mut self, input: &[u8]) {

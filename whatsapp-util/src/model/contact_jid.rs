@@ -44,10 +44,10 @@ macro_rules! declare_server {
 
 #[derive(serde::Serialize)]
 pub struct ContactJid {
-    user: String,
-    server: Server,
-    device: u32,
-    agent: u32,
+    pub user: String,
+    pub server: Server,
+    pub device: u32,
+    pub agent: u32,
 }
 
 impl ContactJid {
@@ -112,6 +112,10 @@ impl ContactJid {
         }
 
         bail!("Could not parse jid")
+    }
+
+    pub fn is_companion(&self) -> bool {
+        self.device != 0
     }
 
     fn without_server(mut jid: String) -> String {
