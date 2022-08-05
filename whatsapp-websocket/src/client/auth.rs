@@ -1,12 +1,12 @@
 use std::fmt::Debug;
-use whatsapp_rs_util::handshake::credentials::Credentials;
-use whatsapp_rs_util::handshake::Handshake;
+use whatsapp_rs_util::model::credentials::Credentials;
+use whatsapp_rs_util::binary::handshake::Handshake;
 
 use anyhow::{anyhow, Result};
 use futures::{Sink, SinkExt};
 use tokio_tungstenite::tungstenite::Message;
-use whatsapp_rs_util::handshake::session::Session;
-use whatsapp_rs_util::message;
+use whatsapp_rs_util::model::session::Session;
+use whatsapp_rs_util::binary;
 
 use whatsapp_rs_util::protobuf::whatsapp::MessageParser;
 use whatsapp_rs_util::protobuf::whatsapp::{ClientFinish, HandshakeMessage};
@@ -48,7 +48,7 @@ impl<'a> AuthHandler<'a> {
         client_finish.payload = encrypted_payload.into();
 
         let handshake_request = Handshake::create_finish_handshake(client_finish);
-        let encoded = message::codec::encode_frame(false, &handshake_request.write_to_bytes()?)?;
+        let encoded = binary::codec::encode_frame(false, &handshake_request.write_to_bytes()?)?;
 
         self.handshake.finish();
 

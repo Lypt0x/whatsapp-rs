@@ -1,5 +1,5 @@
 use crate::protobuf::whatsapp::AppVersion;
-use crate::result::Error;
+use crate::util::error::Error;
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]

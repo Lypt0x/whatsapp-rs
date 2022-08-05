@@ -1,13 +1,8 @@
-pub mod credentials;
-pub mod session;
-
-pub const PROTOCOL: [u8; 32] = *b"Noise_XX_25519_AESGCM_SHA256\0\0\0\0";
-pub const PROLOGUE: [u8; 4] = [87, 65, 5, 2];
-
-use crate::handshake::credentials::Credentials;
+use crate::model::credentials::Credentials;
 use crate::protobuf::whatsapp::client_payload::{
     ClientPayloadConnectReason, ClientPayloadConnectType,
 };
+
 use crate::protobuf::whatsapp::companion_props::CompanionPropsPlatformType;
 use crate::protobuf::whatsapp::user_agent::{UserAgentPlatform, UserAgentReleaseChannel};
 use crate::protobuf::whatsapp::web_info::WebInfoWebSubPlatform;
@@ -15,12 +10,16 @@ use crate::protobuf::whatsapp::{
     AppVersion, ClientFinish, ClientHello, ClientPayload, CompanionProps, CompanionRegData,
     HandshakeMessage, UserAgent, WebInfo,
 };
-pub use crate::security::keypair::Keypair;
-use crate::security::{aes, hash, hkdf};
-pub use anyhow::Result;
 
-use crate::handshake::session::Session;
+use crate::security::keypair::Keypair;
+use crate::security::{aes, hash, hkdf};
+
+use crate::model::session::Session;
 use protobuf::{EnumOrUnknown, Message, MessageField};
+
+pub use crate::Result;
+use crate::security::AsNonce;
+use super::{PROTOCOL, PROLOGUE};
 
 pub struct Handshake<'a> {
     pub credentials: &'a mut Credentials,
@@ -64,16 +63,20 @@ impl<'a> Handshake<'a> {
     }
 
     pub fn decrypt(&mut self, input: &[u8]) -> Result<Vec<u8>> {
-        let decrypted = aes::decrypt(self.crypto_key, self.hash, aes::iv_as_nonce(self.iv), input)?;
-        self.iv += 1;
+        let decrypted = aes::decrypt(
+            self.crypto_key, self.hash,
+            self.iv.get_increment_nonce_mut(), input
+        )?;
 
         self.rehash_ref(input);
         Ok(decrypted)
     }
 
     pub fn encrypt(&mut self, input: &[u8]) -> Result<Vec<u8>> {
-        let decrypted = aes::encrypt(self.crypto_key, self.hash, aes::iv_as_nonce(self.iv), input)?;
-        self.iv += 1;
+        let decrypted = aes::encrypt(
+            self.crypto_key, self.hash,
+            self.iv.get_increment_nonce_mut(), input
+        )?;
 
         self.rehash_ref(&decrypted);
         Ok(decrypted)

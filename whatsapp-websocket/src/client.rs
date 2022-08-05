@@ -1,15 +1,15 @@
 use tokio_tungstenite::tungstenite::http::header::*;
 use tokio_tungstenite::tungstenite::http::Request;
-use whatsapp_rs_util::handshake::session::Session;
+use whatsapp_rs_util::model::session::Session;
 
 use crate::client::auth::AuthHandler;
 use anyhow::Result;
 use futures::{SinkExt, StreamExt};
 use tokio_tungstenite::tungstenite::Message;
-use whatsapp_rs_util::handshake::credentials::Credentials;
-use whatsapp_rs_util::handshake::Handshake;
-use whatsapp_rs_util::message;
-use whatsapp_rs_util::message::codec::NodeCodec;
+use whatsapp_rs_util::model::credentials::Credentials;
+use whatsapp_rs_util::binary::handshake::Handshake;
+use whatsapp_rs_util::binary;
+use whatsapp_rs_util::binary::codec::NodeCodec;
 
 use whatsapp_rs_util::protobuf::whatsapp::{ClientHello, MessageParser};
 
@@ -63,7 +63,7 @@ impl WebSocketClient {
             .to_vec()
             .into();
         let hello_handshake = Handshake::create_hello_handshake(hello);
-        let encoded_hello = message::codec::encode_frame(true, &hello_handshake.write_to_bytes()?)?;
+        let encoded_hello = binary::codec::encode_frame(true, &hello_handshake.write_to_bytes()?)?;
         websocket.send(Message::Binary(encoded_hello)).await?;
 
         while let Some(message) = websocket.next().await {
@@ -74,9 +74,9 @@ impl WebSocketClient {
                         break;
                     }
 
-                    let message = message::codec::decode_frame(payload);
+                    let message = binary::codec::decode_frame(payload);
                     if message.is_empty() {
-                        println!("Could not decode message");
+                        println!("Could not decode binary");
                         break;
                     }
 
@@ -93,17 +93,17 @@ impl WebSocketClient {
                         self.state = State::Connected;
                     } else {
                         println!("Connected, node");
+                        let mut decoder = NodeCodec { session: self.session.as_mut().unwrap() };
+
                         for decoded in message {
-                            let mut codec =
-                                NodeCodec::new(&decoded, self.session.as_ref().unwrap())?;
-                            println!("{:?}", codec.decode()?);
+                            decoder.decode(&decoded);
                         }
 
                         break;
                     }
                 }
                 _ => {
-                    println!("Unknown message received: {message:?}")
+                    println!("Unknown binary received: {binary:?}")
                 }
             }
         }

@@ -19,9 +19,9 @@ const _PROTOBUF_VERSION_CHECK: () = ::protobuf::VERSION_3_1_0;
 pub use protobuf::Message as MessageParser;
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppVersion)
+// @@protoc_insertion_point(binary:AppVersion)
 pub struct AppVersion {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppVersion.primary)
     pub primary: ::std::option::Option<u32>,
     // @@protoc_insertion_point(field:AppVersion.secondary)
@@ -308,9 +308,9 @@ impl ::protobuf::reflect::ProtobufValue for AppVersion {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:UserAgent)
+// @@protoc_insertion_point(binary:UserAgent)
 pub struct UserAgent {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:UserAgent.platform)
     pub platform: ::std::option::Option<::protobuf::EnumOrUnknown<user_agent::UserAgentPlatform>>,
     // @@protoc_insertion_point(field:UserAgent.appVersion)
@@ -1050,7 +1050,7 @@ impl ::protobuf::reflect::ProtobufValue for UserAgent {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `UserAgent`
+/// Nested binary and enums of binary `UserAgent`
 pub mod user_agent {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:UserAgent.UserAgentPlatform)
@@ -1278,9 +1278,9 @@ pub mod user_agent {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:WebdPayload)
+// @@protoc_insertion_point(binary:WebdPayload)
 pub struct WebdPayload {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:WebdPayload.usesParticipantInKey)
     pub usesParticipantInKey: ::std::option::Option<bool>,
     // @@protoc_insertion_point(field:WebdPayload.supportsStarredMessages)
@@ -1823,9 +1823,9 @@ impl ::protobuf::reflect::ProtobufValue for WebdPayload {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:WebInfo)
+// @@protoc_insertion_point(binary:WebInfo)
 pub struct WebInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:WebInfo.refToken)
     pub refToken: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:WebInfo.version)
@@ -2093,7 +2093,7 @@ impl ::protobuf::reflect::ProtobufValue for WebInfo {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `WebInfo`
+/// Nested binary and enums of binary `WebInfo`
 pub mod web_info {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:WebInfo.WebInfoWebSubPlatform)
@@ -2163,9 +2163,9 @@ pub mod web_info {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DNSSource)
+// @@protoc_insertion_point(binary:DNSSource)
 pub struct DNSSource {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DNSSource.dnsMethod)
     pub dnsMethod: ::std::option::Option<::protobuf::EnumOrUnknown<dnssource::DNSSourceDNSResolutionMethod>>,
     // @@protoc_insertion_point(field:DNSSource.appCached)
@@ -2343,7 +2343,7 @@ impl ::protobuf::reflect::ProtobufValue for DNSSource {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `DNSSource`
+/// Nested binary and enums of binary `DNSSource`
 pub mod dnssource {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:DNSSource.DNSSourceDNSResolutionMethod)
@@ -2413,9 +2413,9 @@ pub mod dnssource {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:CompanionRegData)
+// @@protoc_insertion_point(binary:CompanionRegData)
 pub struct CompanionRegData {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:CompanionRegData.eRegid)
     pub eRegid: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:CompanionRegData.eKeytype)
@@ -2949,9 +2949,9 @@ impl ::protobuf::reflect::ProtobufValue for CompanionRegData {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ClientPayload)
+// @@protoc_insertion_point(binary:ClientPayload)
 pub struct ClientPayload {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ClientPayload.username)
     pub username: ::std::option::Option<u64>,
     // @@protoc_insertion_point(field:ClientPayload.passive)
@@ -3858,7 +3858,7 @@ impl ::protobuf::reflect::ProtobufValue for ClientPayload {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ClientPayload`
+/// Nested binary and enums of binary `ClientPayload`
 pub mod client_payload {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:ClientPayload.ClientPayloadConnectType)
@@ -4166,9 +4166,9 @@ pub mod client_payload {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:NoiseCertificateDetails)
+// @@protoc_insertion_point(binary:NoiseCertificateDetails)
 pub struct NoiseCertificateDetails {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:NoiseCertificateDetails.serial)
     pub serial: ::std::option::Option<u32>,
     // @@protoc_insertion_point(field:NoiseCertificateDetails.issuer)
@@ -4506,9 +4506,9 @@ impl ::protobuf::reflect::ProtobufValue for NoiseCertificateDetails {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:NoiseCertificate)
+// @@protoc_insertion_point(binary:NoiseCertificate)
 pub struct NoiseCertificate {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:NoiseCertificate.details)
     pub details: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:NoiseCertificate.signature)
@@ -4718,9 +4718,9 @@ impl ::protobuf::reflect::ProtobufValue for NoiseCertificate {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ClientHello)
+// @@protoc_insertion_point(binary:ClientHello)
 pub struct ClientHello {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ClientHello.ephemeral)
     pub ephemeral: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:ClientHello.static)
@@ -4984,9 +4984,9 @@ impl ::protobuf::reflect::ProtobufValue for ClientHello {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ServerHello)
+// @@protoc_insertion_point(binary:ServerHello)
 pub struct ServerHello {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ServerHello.ephemeral)
     pub ephemeral: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:ServerHello.static)
@@ -5250,9 +5250,9 @@ impl ::protobuf::reflect::ProtobufValue for ServerHello {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ClientFinish)
+// @@protoc_insertion_point(binary:ClientFinish)
 pub struct ClientFinish {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ClientFinish.static)
     pub static_: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:ClientFinish.payload)
@@ -5462,9 +5462,9 @@ impl ::protobuf::reflect::ProtobufValue for ClientFinish {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HandshakeMessage)
+// @@protoc_insertion_point(binary:HandshakeMessage)
 pub struct HandshakeMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HandshakeMessage.clientHello)
     pub clientHello: ::protobuf::MessageField<ClientHello>,
     // @@protoc_insertion_point(field:HandshakeMessage.serverHello)
@@ -5623,9 +5623,9 @@ impl ::protobuf::reflect::ProtobufValue for HandshakeMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:BizIdentityInfo)
+// @@protoc_insertion_point(binary:BizIdentityInfo)
 pub struct BizIdentityInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:BizIdentityInfo.vlevel)
     pub vlevel: ::std::option::Option<::protobuf::EnumOrUnknown<biz_identity_info::BizIdentityInfoVerifiedLevelValue>>,
     // @@protoc_insertion_point(field:BizIdentityInfo.vnameCert)
@@ -6013,7 +6013,7 @@ impl ::protobuf::reflect::ProtobufValue for BizIdentityInfo {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `BizIdentityInfo`
+/// Nested binary and enums of binary `BizIdentityInfo`
 pub mod biz_identity_info {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:BizIdentityInfo.BizIdentityInfoVerifiedLevelValue)
@@ -6183,9 +6183,9 @@ pub mod biz_identity_info {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:BizAccountLinkInfo)
+// @@protoc_insertion_point(binary:BizAccountLinkInfo)
 pub struct BizAccountLinkInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:BizAccountLinkInfo.whatsappBizAcctFbid)
     pub whatsappBizAcctFbid: ::std::option::Option<u64>,
     // @@protoc_insertion_point(field:BizAccountLinkInfo.whatsappAcctNumber)
@@ -6494,7 +6494,7 @@ impl ::protobuf::reflect::ProtobufValue for BizAccountLinkInfo {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `BizAccountLinkInfo`
+/// Nested binary and enums of binary `BizAccountLinkInfo`
 pub mod biz_account_link_info {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:BizAccountLinkInfo.BizAccountLinkInfoHostStorageType)
@@ -6602,9 +6602,9 @@ pub mod biz_account_link_info {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:BizAccountPayload)
+// @@protoc_insertion_point(binary:BizAccountPayload)
 pub struct BizAccountPayload {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:BizAccountPayload.vnameCert)
     pub vnameCert: ::protobuf::MessageField<VerifiedNameCertificate>,
     // @@protoc_insertion_point(field:BizAccountPayload.bizAcctLinkInfo)
@@ -6779,9 +6779,9 @@ impl ::protobuf::reflect::ProtobufValue for BizAccountPayload {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:VerifiedNameDetails)
+// @@protoc_insertion_point(binary:VerifiedNameDetails)
 pub struct VerifiedNameDetails {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:VerifiedNameDetails.serial)
     pub serial: ::std::option::Option<u64>,
     // @@protoc_insertion_point(field:VerifiedNameDetails.issuer)
@@ -7084,9 +7084,9 @@ impl ::protobuf::reflect::ProtobufValue for VerifiedNameDetails {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:VerifiedNameCertificate)
+// @@protoc_insertion_point(binary:VerifiedNameCertificate)
 pub struct VerifiedNameCertificate {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:VerifiedNameCertificate.details)
     pub details: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:VerifiedNameCertificate.signature)
@@ -7350,9 +7350,9 @@ impl ::protobuf::reflect::ProtobufValue for VerifiedNameCertificate {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:LocalizedName)
+// @@protoc_insertion_point(binary:LocalizedName)
 pub struct LocalizedName {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:LocalizedName.lg)
     pub lg: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:LocalizedName.lc)
@@ -7616,9 +7616,9 @@ impl ::protobuf::reflect::ProtobufValue for LocalizedName {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncActionData)
+// @@protoc_insertion_point(binary:SyncActionData)
 pub struct SyncActionData {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncActionData.index)
     pub index: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:SyncActionData.value)
@@ -7884,9 +7884,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncActionData {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:StarAction)
+// @@protoc_insertion_point(binary:StarAction)
 pub struct StarAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:StarAction.starred)
     pub starred: ::std::option::Option<bool>,
     // special fields
@@ -8025,9 +8025,9 @@ impl ::protobuf::reflect::ProtobufValue for StarAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ContactAction)
+// @@protoc_insertion_point(binary:ContactAction)
 pub struct ContactAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ContactAction.fullName)
     pub fullName: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ContactAction.firstName)
@@ -8237,9 +8237,9 @@ impl ::protobuf::reflect::ProtobufValue for ContactAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MuteAction)
+// @@protoc_insertion_point(binary:MuteAction)
 pub struct MuteAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MuteAction.muted)
     pub muted: ::std::option::Option<bool>,
     // @@protoc_insertion_point(field:MuteAction.muteEndTimestamp)
@@ -8415,9 +8415,9 @@ impl ::protobuf::reflect::ProtobufValue for MuteAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PinAction)
+// @@protoc_insertion_point(binary:PinAction)
 pub struct PinAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PinAction.pinned)
     pub pinned: ::std::option::Option<bool>,
     // special fields
@@ -8556,9 +8556,9 @@ impl ::protobuf::reflect::ProtobufValue for PinAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SecurityNotificationSetting)
+// @@protoc_insertion_point(binary:SecurityNotificationSetting)
 pub struct SecurityNotificationSetting {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SecurityNotificationSetting.showNotification)
     pub showNotification: ::std::option::Option<bool>,
     // special fields
@@ -8697,9 +8697,9 @@ impl ::protobuf::reflect::ProtobufValue for SecurityNotificationSetting {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PushNameSetting)
+// @@protoc_insertion_point(binary:PushNameSetting)
 pub struct PushNameSetting {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PushNameSetting.name)
     pub name: ::std::option::Option<::std::string::String>,
     // special fields
@@ -8855,9 +8855,9 @@ impl ::protobuf::reflect::ProtobufValue for PushNameSetting {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:LocaleSetting)
+// @@protoc_insertion_point(binary:LocaleSetting)
 pub struct LocaleSetting {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:LocaleSetting.locale)
     pub locale: ::std::option::Option<::std::string::String>,
     // special fields
@@ -9013,12 +9013,12 @@ impl ::protobuf::reflect::ProtobufValue for LocaleSetting {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:QuickReplyAction)
+// @@protoc_insertion_point(binary:QuickReplyAction)
 pub struct QuickReplyAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:QuickReplyAction.shortcut)
     pub shortcut: ::std::option::Option<::std::string::String>,
-    // @@protoc_insertion_point(field:QuickReplyAction.message)
+    // @@protoc_insertion_point(field:QuickReplyAction.binary)
     pub message: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:QuickReplyAction.keywords)
     pub keywords: ::std::vec::Vec<::std::string::String>,
@@ -9078,7 +9078,7 @@ impl QuickReplyAction {
         self.shortcut.take().unwrap_or_else(|| ::std::string::String::new())
     }
 
-    // optional string message = 2;
+    // optional string binary = 2;
 
     pub fn message(&self) -> &str {
         match self.message.as_ref() {
@@ -9161,7 +9161,7 @@ impl QuickReplyAction {
             |m: &mut QuickReplyAction| { &mut m.shortcut },
         ));
         fields.push(::protobuf::reflect::rt::v2::make_option_accessor::<_, _>(
-            "message",
+            "binary",
             |m: &QuickReplyAction| { &m.message },
             |m: &mut QuickReplyAction| { &mut m.message },
         ));
@@ -9317,9 +9317,9 @@ impl ::protobuf::reflect::ProtobufValue for QuickReplyAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:LabelAssociationAction)
+// @@protoc_insertion_point(binary:LabelAssociationAction)
 pub struct LabelAssociationAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:LabelAssociationAction.labeled)
     pub labeled: ::std::option::Option<bool>,
     // special fields
@@ -9458,9 +9458,9 @@ impl ::protobuf::reflect::ProtobufValue for LabelAssociationAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:LabelEditAction)
+// @@protoc_insertion_point(binary:LabelEditAction)
 pub struct LabelEditAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:LabelEditAction.name)
     pub name: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:LabelEditAction.color)
@@ -9727,9 +9727,9 @@ impl ::protobuf::reflect::ProtobufValue for LabelEditAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:RecentStickerWeightsAction)
+// @@protoc_insertion_point(binary:RecentStickerWeightsAction)
 pub struct RecentStickerWeightsAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:RecentStickerWeightsAction.weights)
     pub weights: ::std::vec::Vec<RecentStickerWeight>,
     // special fields
@@ -9850,9 +9850,9 @@ impl ::protobuf::reflect::ProtobufValue for RecentStickerWeightsAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:RecentStickerMetadata)
+// @@protoc_insertion_point(binary:RecentStickerMetadata)
 pub struct RecentStickerMetadata {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:RecentStickerMetadata.directPath)
     pub directPath: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:RecentStickerMetadata.encFilehash)
@@ -10315,9 +10315,9 @@ impl ::protobuf::reflect::ProtobufValue for RecentStickerMetadata {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:RecentEmojiWeightsAction)
+// @@protoc_insertion_point(binary:RecentEmojiWeightsAction)
 pub struct RecentEmojiWeightsAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:RecentEmojiWeightsAction.weights)
     pub weights: ::std::vec::Vec<RecentEmojiWeight>,
     // special fields
@@ -10438,9 +10438,9 @@ impl ::protobuf::reflect::ProtobufValue for RecentEmojiWeightsAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:FavoriteStickerAction)
+// @@protoc_insertion_point(binary:FavoriteStickerAction)
 pub struct FavoriteStickerAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:FavoriteStickerAction.directPath)
     pub directPath: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:FavoriteStickerAction.lastUploadTimestamp)
@@ -10940,9 +10940,9 @@ impl ::protobuf::reflect::ProtobufValue for FavoriteStickerAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ArchiveChatAction)
+// @@protoc_insertion_point(binary:ArchiveChatAction)
 pub struct ArchiveChatAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ArchiveChatAction.archived)
     pub archived: ::std::option::Option<bool>,
     // @@protoc_insertion_point(field:ArchiveChatAction.messageRange)
@@ -11100,9 +11100,9 @@ impl ::protobuf::reflect::ProtobufValue for ArchiveChatAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DeleteMessageForMeAction)
+// @@protoc_insertion_point(binary:DeleteMessageForMeAction)
 pub struct DeleteMessageForMeAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DeleteMessageForMeAction.deleteMedia)
     pub deleteMedia: ::std::option::Option<bool>,
     // @@protoc_insertion_point(field:DeleteMessageForMeAction.messageTimestamp)
@@ -11278,9 +11278,9 @@ impl ::protobuf::reflect::ProtobufValue for DeleteMessageForMeAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MarkChatAsReadAction)
+// @@protoc_insertion_point(binary:MarkChatAsReadAction)
 pub struct MarkChatAsReadAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MarkChatAsReadAction.read)
     pub read: ::std::option::Option<bool>,
     // @@protoc_insertion_point(field:MarkChatAsReadAction.messageRange)
@@ -11438,9 +11438,9 @@ impl ::protobuf::reflect::ProtobufValue for MarkChatAsReadAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ClearChatAction)
+// @@protoc_insertion_point(binary:ClearChatAction)
 pub struct ClearChatAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ClearChatAction.messageRange)
     pub messageRange: ::protobuf::MessageField<SyncActionMessageRange>,
     // special fields
@@ -11561,9 +11561,9 @@ impl ::protobuf::reflect::ProtobufValue for ClearChatAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DeleteChatAction)
+// @@protoc_insertion_point(binary:DeleteChatAction)
 pub struct DeleteChatAction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DeleteChatAction.messageRange)
     pub messageRange: ::protobuf::MessageField<SyncActionMessageRange>,
     // special fields
@@ -11684,9 +11684,9 @@ impl ::protobuf::reflect::ProtobufValue for DeleteChatAction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:UnarchiveChatsSetting)
+// @@protoc_insertion_point(binary:UnarchiveChatsSetting)
 pub struct UnarchiveChatsSetting {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:UnarchiveChatsSetting.unarchiveChats)
     pub unarchiveChats: ::std::option::Option<bool>,
     // special fields
@@ -11825,9 +11825,9 @@ impl ::protobuf::reflect::ProtobufValue for UnarchiveChatsSetting {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncActionMessageRange)
+// @@protoc_insertion_point(binary:SyncActionMessageRange)
 pub struct SyncActionMessageRange {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncActionMessageRange.lastMessageTimestamp)
     pub lastMessageTimestamp: ::std::option::Option<i64>,
     // @@protoc_insertion_point(field:SyncActionMessageRange.lastSystemMessageTimestamp)
@@ -12022,9 +12022,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncActionMessageRange {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncActionMessage)
+// @@protoc_insertion_point(binary:SyncActionMessage)
 pub struct SyncActionMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncActionMessage.key)
     pub key: ::protobuf::MessageField<MessageKey>,
     // @@protoc_insertion_point(field:SyncActionMessage.timestamp)
@@ -12182,9 +12182,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncActionMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:KeyExpiration)
+// @@protoc_insertion_point(binary:KeyExpiration)
 pub struct KeyExpiration {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:KeyExpiration.expiredKeyEpoch)
     pub expiredKeyEpoch: ::std::option::Option<i32>,
     // special fields
@@ -12323,9 +12323,9 @@ impl ::protobuf::reflect::ProtobufValue for KeyExpiration {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PrimaryFeature)
+// @@protoc_insertion_point(binary:PrimaryFeature)
 pub struct PrimaryFeature {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PrimaryFeature.flags)
     pub flags: ::std::vec::Vec<::std::string::String>,
     // special fields
@@ -12445,9 +12445,9 @@ impl ::protobuf::reflect::ProtobufValue for PrimaryFeature {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AndroidUnsupportedActions)
+// @@protoc_insertion_point(binary:AndroidUnsupportedActions)
 pub struct AndroidUnsupportedActions {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AndroidUnsupportedActions.allowed)
     pub allowed: ::std::option::Option<bool>,
     // special fields
@@ -12586,9 +12586,9 @@ impl ::protobuf::reflect::ProtobufValue for AndroidUnsupportedActions {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncActionValue)
+// @@protoc_insertion_point(binary:SyncActionValue)
 pub struct SyncActionValue {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncActionValue.timestamp)
     pub timestamp: ::std::option::Option<i64>,
     // @@protoc_insertion_point(field:SyncActionValue.starAction)
@@ -13164,9 +13164,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncActionValue {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:RecentEmojiWeight)
+// @@protoc_insertion_point(binary:RecentEmojiWeight)
 pub struct RecentEmojiWeight {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:RecentEmojiWeight.emoji)
     pub emoji: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:RecentEmojiWeight.weight)
@@ -13359,9 +13359,9 @@ impl ::protobuf::reflect::ProtobufValue for RecentEmojiWeight {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:RecentStickerWeight)
+// @@protoc_insertion_point(binary:RecentStickerWeight)
 pub struct RecentStickerWeight {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:RecentStickerWeight.filehash)
     pub filehash: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:RecentStickerWeight.weight)
@@ -13554,9 +13554,9 @@ impl ::protobuf::reflect::ProtobufValue for RecentStickerWeight {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdPatch)
+// @@protoc_insertion_point(binary:SyncdPatch)
 pub struct SyncdPatch {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdPatch.version)
     pub version: ::protobuf::MessageField<SyncdVersion>,
     // @@protoc_insertion_point(field:SyncdPatch.mutations)
@@ -13898,9 +13898,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncdPatch {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdMutation)
+// @@protoc_insertion_point(binary:SyncdMutation)
 pub struct SyncdMutation {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdMutation.operation)
     pub operation: ::std::option::Option<::protobuf::EnumOrUnknown<syncd_mutation::SyncdMutationSyncdOperation>>,
     // @@protoc_insertion_point(field:SyncdMutation.record)
@@ -14060,7 +14060,7 @@ impl ::protobuf::reflect::ProtobufValue for SyncdMutation {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `SyncdMutation`
+/// Nested binary and enums of binary `SyncdMutation`
 pub mod syncd_mutation {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:SyncdMutation.SyncdMutationSyncdOperation)
@@ -14118,9 +14118,9 @@ pub mod syncd_mutation {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdMutations)
+// @@protoc_insertion_point(binary:SyncdMutations)
 pub struct SyncdMutations {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdMutations.mutations)
     pub mutations: ::std::vec::Vec<SyncdMutation>,
     // special fields
@@ -14241,9 +14241,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncdMutations {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdSnapshot)
+// @@protoc_insertion_point(binary:SyncdSnapshot)
 pub struct SyncdSnapshot {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdSnapshot.version)
     pub version: ::protobuf::MessageField<SyncdVersion>,
     // @@protoc_insertion_point(field:SyncdSnapshot.records)
@@ -14456,9 +14456,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncdSnapshot {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ExternalBlobReference)
+// @@protoc_insertion_point(binary:ExternalBlobReference)
 pub struct ExternalBlobReference {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ExternalBlobReference.mediaKey)
     pub mediaKey: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:ExternalBlobReference.directPath)
@@ -14867,9 +14867,9 @@ impl ::protobuf::reflect::ProtobufValue for ExternalBlobReference {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdRecord)
+// @@protoc_insertion_point(binary:SyncdRecord)
 pub struct SyncdRecord {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdRecord.index)
     pub index: ::protobuf::MessageField<SyncdIndex>,
     // @@protoc_insertion_point(field:SyncdRecord.value)
@@ -15028,9 +15028,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncdRecord {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:KeyId)
+// @@protoc_insertion_point(binary:KeyId)
 pub struct KeyId {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:KeyId.id)
     pub id: ::std::option::Option<::std::vec::Vec<u8>>,
     // special fields
@@ -15186,9 +15186,9 @@ impl ::protobuf::reflect::ProtobufValue for KeyId {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdValue)
+// @@protoc_insertion_point(binary:SyncdValue)
 pub struct SyncdValue {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdValue.blob)
     pub blob: ::std::option::Option<::std::vec::Vec<u8>>,
     // special fields
@@ -15344,9 +15344,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncdValue {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdIndex)
+// @@protoc_insertion_point(binary:SyncdIndex)
 pub struct SyncdIndex {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdIndex.blob)
     pub blob: ::std::option::Option<::std::vec::Vec<u8>>,
     // special fields
@@ -15502,9 +15502,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncdIndex {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ExitCode)
+// @@protoc_insertion_point(binary:ExitCode)
 pub struct ExitCode {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ExitCode.code)
     pub code: ::std::option::Option<u64>,
     // @@protoc_insertion_point(field:ExitCode.text)
@@ -15697,9 +15697,9 @@ impl ::protobuf::reflect::ProtobufValue for ExitCode {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SyncdVersion)
+// @@protoc_insertion_point(binary:SyncdVersion)
 pub struct SyncdVersion {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SyncdVersion.version)
     pub version: ::std::option::Option<u64>,
     // special fields
@@ -15838,9 +15838,9 @@ impl ::protobuf::reflect::ProtobufValue for SyncdVersion {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ServerErrorReceipt)
+// @@protoc_insertion_point(binary:ServerErrorReceipt)
 pub struct ServerErrorReceipt {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ServerErrorReceipt.stanzaId)
     pub stanzaId: ::std::option::Option<::std::string::String>,
     // special fields
@@ -15996,9 +15996,9 @@ impl ::protobuf::reflect::ProtobufValue for ServerErrorReceipt {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MediaRetryNotification)
+// @@protoc_insertion_point(binary:MediaRetryNotification)
 pub struct MediaRetryNotification {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MediaRetryNotification.stanzaId)
     pub stanzaId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:MediaRetryNotification.directPath)
@@ -16247,7 +16247,7 @@ impl ::protobuf::reflect::ProtobufValue for MediaRetryNotification {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `MediaRetryNotification`
+/// Nested binary and enums of binary `MediaRetryNotification`
 pub mod media_retry_notification {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:MediaRetryNotification.MediaRetryNotificationResultType)
@@ -16313,9 +16313,9 @@ pub mod media_retry_notification {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MsgOpaqueData)
+// @@protoc_insertion_point(binary:MsgOpaqueData)
 pub struct MsgOpaqueData {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MsgOpaqueData.body)
     pub body: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:MsgOpaqueData.caption)
@@ -17068,9 +17068,9 @@ impl ::protobuf::reflect::ProtobufValue for MsgOpaqueData {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MsgRowOpaqueData)
+// @@protoc_insertion_point(binary:MsgRowOpaqueData)
 pub struct MsgRowOpaqueData {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MsgRowOpaqueData.currentMsg)
     pub currentMsg: ::protobuf::MessageField<MsgOpaqueData>,
     // @@protoc_insertion_point(field:MsgRowOpaqueData.quotedMsg)
@@ -17210,9 +17210,9 @@ impl ::protobuf::reflect::ProtobufValue for MsgRowOpaqueData {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:GlobalSettings)
+// @@protoc_insertion_point(binary:GlobalSettings)
 pub struct GlobalSettings {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:GlobalSettings.lightThemeWallpaper)
     pub lightThemeWallpaper: ::protobuf::MessageField<WallpaperSettings>,
     // @@protoc_insertion_point(field:GlobalSettings.mediaVisibility)
@@ -17392,9 +17392,9 @@ impl ::protobuf::reflect::ProtobufValue for GlobalSettings {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:WallpaperSettings)
+// @@protoc_insertion_point(binary:WallpaperSettings)
 pub struct WallpaperSettings {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:WallpaperSettings.filename)
     pub filename: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:WallpaperSettings.opacity)
@@ -17587,9 +17587,9 @@ impl ::protobuf::reflect::ProtobufValue for WallpaperSettings {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:GroupParticipant)
+// @@protoc_insertion_point(binary:GroupParticipant)
 pub struct GroupParticipant {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:GroupParticipant.userJid)
     pub userJid: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:GroupParticipant.rank)
@@ -17787,7 +17787,7 @@ impl ::protobuf::reflect::ProtobufValue for GroupParticipant {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `GroupParticipant`
+/// Nested binary and enums of binary `GroupParticipant`
 pub mod group_participant {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:GroupParticipant.GroupParticipantRank)
@@ -17849,9 +17849,9 @@ pub mod group_participant {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Pushname)
+// @@protoc_insertion_point(binary:Pushname)
 pub struct Pushname {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Pushname.id)
     pub id: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Pushname.pushname)
@@ -18061,10 +18061,10 @@ impl ::protobuf::reflect::ProtobufValue for Pushname {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HistorySyncMsg)
+// @@protoc_insertion_point(binary:HistorySyncMsg)
 pub struct HistorySyncMsg {
-    // message fields
-    // @@protoc_insertion_point(field:HistorySyncMsg.message)
+    // binary fields
+    // @@protoc_insertion_point(field:HistorySyncMsg.binary)
     pub message: ::protobuf::MessageField<WebMessageInfo>,
     // @@protoc_insertion_point(field:HistorySyncMsg.msgOrderId)
     pub msgOrderId: ::std::option::Option<u64>,
@@ -18107,7 +18107,7 @@ impl HistorySyncMsg {
         let mut fields = ::std::vec::Vec::with_capacity(2);
         let mut oneofs = ::std::vec::Vec::with_capacity(0);
         fields.push(::protobuf::reflect::rt::v2::make_message_field_accessor::<_, WebMessageInfo>(
-            "message",
+            "binary",
             |m: &HistorySyncMsg| { &m.message },
             |m: &mut HistorySyncMsg| { &mut m.message },
         ));
@@ -18226,9 +18226,9 @@ impl ::protobuf::reflect::ProtobufValue for HistorySyncMsg {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Conversation)
+// @@protoc_insertion_point(binary:Conversation)
 pub struct Conversation {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Conversation.id)
     pub id: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Conversation.messages)
@@ -19478,7 +19478,7 @@ impl ::protobuf::reflect::ProtobufValue for Conversation {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `Conversation`
+/// Nested binary and enums of binary `Conversation`
 pub mod conversation {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:Conversation.ConversationEndOfHistoryTransferType)
@@ -19536,9 +19536,9 @@ pub mod conversation {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HistorySync)
+// @@protoc_insertion_point(binary:HistorySync)
 pub struct HistorySync {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HistorySync.syncType)
     pub syncType: ::std::option::Option<::protobuf::EnumOrUnknown<history_sync::HistorySyncHistorySyncType>>,
     // @@protoc_insertion_point(field:HistorySync.conversations)
@@ -19943,7 +19943,7 @@ impl ::protobuf::reflect::ProtobufValue for HistorySync {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `HistorySync`
+/// Nested binary and enums of binary `HistorySync`
 pub mod history_sync {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:HistorySync.HistorySyncHistorySyncType)
@@ -20013,9 +20013,9 @@ pub mod history_sync {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:EphemeralSetting)
+// @@protoc_insertion_point(binary:EphemeralSetting)
 pub struct EphemeralSetting {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:EphemeralSetting.duration)
     pub duration: ::std::option::Option<i32>,
     // @@protoc_insertion_point(field:EphemeralSetting.timestamp)
@@ -20191,12 +20191,12 @@ impl ::protobuf::reflect::ProtobufValue for EphemeralSetting {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:InteractiveAnnotation)
+// @@protoc_insertion_point(binary:InteractiveAnnotation)
 pub struct InteractiveAnnotation {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:InteractiveAnnotation.polygonVertices)
     pub polygonVertices: ::std::vec::Vec<Point>,
-    // message oneof groups
+    // binary oneof groups
     pub action: ::std::option::Option<interactive_annotation::Action>,
     // special fields
     // @@protoc_insertion_point(special_field:InteractiveAnnotation.special_fields)
@@ -20392,7 +20392,7 @@ impl ::protobuf::reflect::ProtobufValue for InteractiveAnnotation {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `InteractiveAnnotation`
+/// Nested binary and enums of binary `InteractiveAnnotation`
 pub mod interactive_annotation {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -20421,9 +20421,9 @@ pub mod interactive_annotation {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DeviceListMetadata)
+// @@protoc_insertion_point(binary:DeviceListMetadata)
 pub struct DeviceListMetadata {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DeviceListMetadata.senderKeyHash)
     pub senderKeyHash: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:DeviceListMetadata.senderTimestamp)
@@ -20741,9 +20741,9 @@ impl ::protobuf::reflect::ProtobufValue for DeviceListMetadata {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MessageContextInfo)
+// @@protoc_insertion_point(binary:MessageContextInfo)
 pub struct MessageContextInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MessageContextInfo.deviceListMetadata)
     pub deviceListMetadata: ::protobuf::MessageField<DeviceListMetadata>,
     // @@protoc_insertion_point(field:MessageContextInfo.deviceListMetadataVersion)
@@ -20901,9 +20901,9 @@ impl ::protobuf::reflect::ProtobufValue for MessageContextInfo {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AdReplyInfo)
+// @@protoc_insertion_point(binary:AdReplyInfo)
 pub struct AdReplyInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AdReplyInfo.advertiserName)
     pub advertiserName: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:AdReplyInfo.mediaType)
@@ -21206,7 +21206,7 @@ impl ::protobuf::reflect::ProtobufValue for AdReplyInfo {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `AdReplyInfo`
+/// Nested binary and enums of binary `AdReplyInfo`
 pub mod ad_reply_info {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:AdReplyInfo.AdReplyInfoMediaType)
@@ -21268,9 +21268,9 @@ pub mod ad_reply_info {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ExternalAdReplyInfo)
+// @@protoc_insertion_point(binary:ExternalAdReplyInfo)
 pub struct ExternalAdReplyInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ExternalAdReplyInfo.title)
     pub title: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ExternalAdReplyInfo.body)
@@ -21880,7 +21880,7 @@ impl ::protobuf::reflect::ProtobufValue for ExternalAdReplyInfo {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ExternalAdReplyInfo`
+/// Nested binary and enums of binary `ExternalAdReplyInfo`
 pub mod external_ad_reply_info {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:ExternalAdReplyInfo.ExternalAdReplyInfoMediaType)
@@ -21942,9 +21942,9 @@ pub mod external_ad_reply_info {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ContextInfo)
+// @@protoc_insertion_point(binary:ContextInfo)
 pub struct ContextInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ContextInfo.stanzaId)
     pub stanzaId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ContextInfo.participant)
@@ -22940,9 +22940,9 @@ impl ::protobuf::reflect::ProtobufValue for ContextInfo {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SenderKeyDistributionMessage)
+// @@protoc_insertion_point(binary:SenderKeyDistributionMessage)
 pub struct SenderKeyDistributionMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SenderKeyDistributionMessage.groupId)
     pub groupId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:SenderKeyDistributionMessage.axolotlSenderKeyDistributionMessage)
@@ -23152,9 +23152,9 @@ impl ::protobuf::reflect::ProtobufValue for SenderKeyDistributionMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ImageMessage)
+// @@protoc_insertion_point(binary:ImageMessage)
 pub struct ImageMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ImageMessage.url)
     pub url: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ImageMessage.mimetype)
@@ -24438,9 +24438,9 @@ impl ::protobuf::reflect::ProtobufValue for ImageMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:InvoiceMessage)
+// @@protoc_insertion_point(binary:InvoiceMessage)
 pub struct InvoiceMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:InvoiceMessage.note)
     pub note: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:InvoiceMessage.token)
@@ -25050,7 +25050,7 @@ impl ::protobuf::reflect::ProtobufValue for InvoiceMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `InvoiceMessage`
+/// Nested binary and enums of binary `InvoiceMessage`
 pub mod invoice_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:InvoiceMessage.InvoiceMessageAttachmentType)
@@ -25108,9 +25108,9 @@ pub mod invoice_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ContactMessage)
+// @@protoc_insertion_point(binary:ContactMessage)
 pub struct ContactMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ContactMessage.displayName)
     pub displayName: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ContactMessage.vcard)
@@ -25339,9 +25339,9 @@ impl ::protobuf::reflect::ProtobufValue for ContactMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:LocationMessage)
+// @@protoc_insertion_point(binary:LocationMessage)
 pub struct LocationMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:LocationMessage.degreesLatitude)
     pub degreesLatitude: ::std::option::Option<f64>,
     // @@protoc_insertion_point(field:LocationMessage.degreesLongitude)
@@ -25954,9 +25954,9 @@ impl ::protobuf::reflect::ProtobufValue for LocationMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ExtendedTextMessage)
+// @@protoc_insertion_point(binary:ExtendedTextMessage)
 pub struct ExtendedTextMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ExtendedTextMessage.text)
     pub text: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ExtendedTextMessage.matchedText)
@@ -26958,7 +26958,7 @@ impl ::protobuf::reflect::ProtobufValue for ExtendedTextMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ExtendedTextMessage`
+/// Nested binary and enums of binary `ExtendedTextMessage`
 pub mod extended_text_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:ExtendedTextMessage.ExtendedTextMessageFontType)
@@ -27140,9 +27140,9 @@ pub mod extended_text_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DocumentMessage)
+// @@protoc_insertion_point(binary:DocumentMessage)
 pub struct DocumentMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DocumentMessage.url)
     pub url: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:DocumentMessage.mimetype)
@@ -28133,9 +28133,9 @@ impl ::protobuf::reflect::ProtobufValue for DocumentMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AudioMessage)
+// @@protoc_insertion_point(binary:AudioMessage)
 pub struct AudioMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AudioMessage.url)
     pub url: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:AudioMessage.mimetype)
@@ -28836,9 +28836,9 @@ impl ::protobuf::reflect::ProtobufValue for AudioMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:VideoMessage)
+// @@protoc_insertion_point(binary:VideoMessage)
 pub struct VideoMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:VideoMessage.url)
     pub url: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:VideoMessage.mimetype)
@@ -29978,7 +29978,7 @@ impl ::protobuf::reflect::ProtobufValue for VideoMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `VideoMessage`
+/// Nested binary and enums of binary `VideoMessage`
 pub mod video_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:VideoMessage.VideoMessageAttribution)
@@ -30040,9 +30040,9 @@ pub mod video_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Call)
+// @@protoc_insertion_point(binary:Call)
 pub struct Call {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Call.callKey)
     pub callKey: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:Call.conversionSource)
@@ -30343,9 +30343,9 @@ impl ::protobuf::reflect::ProtobufValue for Call {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Chat)
+// @@protoc_insertion_point(binary:Chat)
 pub struct Chat {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Chat.displayName)
     pub displayName: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Chat.id)
@@ -30555,9 +30555,9 @@ impl ::protobuf::reflect::ProtobufValue for Chat {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ProtocolMessage)
+// @@protoc_insertion_point(binary:ProtocolMessage)
 pub struct ProtocolMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ProtocolMessage.key)
     pub key: ::protobuf::MessageField<MessageKey>,
     // @@protoc_insertion_point(field:ProtocolMessage.type)
@@ -30905,7 +30905,7 @@ impl ::protobuf::reflect::ProtobufValue for ProtocolMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ProtocolMessage`
+/// Nested binary and enums of binary `ProtocolMessage`
 pub mod protocol_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:ProtocolMessage.ProtocolMessageType)
@@ -31001,9 +31001,9 @@ pub mod protocol_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HistorySyncNotification)
+// @@protoc_insertion_point(binary:HistorySyncNotification)
 pub struct HistorySyncNotification {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HistorySyncNotification.fileSha256)
     pub fileSha256: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:HistorySyncNotification.fileLength)
@@ -31488,7 +31488,7 @@ impl ::protobuf::reflect::ProtobufValue for HistorySyncNotification {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `HistorySyncNotification`
+/// Nested binary and enums of binary `HistorySyncNotification`
 pub mod history_sync_notification {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:HistorySyncNotification.HistorySyncNotificationHistorySyncType)
@@ -31558,9 +31558,9 @@ pub mod history_sync_notification {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppStateSyncKey)
+// @@protoc_insertion_point(binary:AppStateSyncKey)
 pub struct AppStateSyncKey {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppStateSyncKey.keyId)
     pub keyId: ::protobuf::MessageField<AppStateSyncKeyId>,
     // @@protoc_insertion_point(field:AppStateSyncKey.keyData)
@@ -31700,9 +31700,9 @@ impl ::protobuf::reflect::ProtobufValue for AppStateSyncKey {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppStateSyncKeyId)
+// @@protoc_insertion_point(binary:AppStateSyncKeyId)
 pub struct AppStateSyncKeyId {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppStateSyncKeyId.keyId)
     pub keyId: ::std::option::Option<::std::vec::Vec<u8>>,
     // special fields
@@ -31858,9 +31858,9 @@ impl ::protobuf::reflect::ProtobufValue for AppStateSyncKeyId {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppStateSyncKeyFingerprint)
+// @@protoc_insertion_point(binary:AppStateSyncKeyFingerprint)
 pub struct AppStateSyncKeyFingerprint {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppStateSyncKeyFingerprint.rawId)
     pub rawId: ::std::option::Option<u32>,
     // @@protoc_insertion_point(field:AppStateSyncKeyFingerprint.currentIndex)
@@ -32053,9 +32053,9 @@ impl ::protobuf::reflect::ProtobufValue for AppStateSyncKeyFingerprint {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppStateSyncKeyData)
+// @@protoc_insertion_point(binary:AppStateSyncKeyData)
 pub struct AppStateSyncKeyData {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppStateSyncKeyData.keyData)
     pub keyData: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:AppStateSyncKeyData.fingerprint)
@@ -32267,9 +32267,9 @@ impl ::protobuf::reflect::ProtobufValue for AppStateSyncKeyData {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppStateSyncKeyShare)
+// @@protoc_insertion_point(binary:AppStateSyncKeyShare)
 pub struct AppStateSyncKeyShare {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppStateSyncKeyShare.keys)
     pub keys: ::std::vec::Vec<AppStateSyncKey>,
     // special fields
@@ -32390,9 +32390,9 @@ impl ::protobuf::reflect::ProtobufValue for AppStateSyncKeyShare {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppStateSyncKeyRequest)
+// @@protoc_insertion_point(binary:AppStateSyncKeyRequest)
 pub struct AppStateSyncKeyRequest {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppStateSyncKeyRequest.keyIds)
     pub keyIds: ::std::vec::Vec<AppStateSyncKeyId>,
     // special fields
@@ -32513,9 +32513,9 @@ impl ::protobuf::reflect::ProtobufValue for AppStateSyncKeyRequest {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:AppStateFatalExceptionNotification)
+// @@protoc_insertion_point(binary:AppStateFatalExceptionNotification)
 pub struct AppStateFatalExceptionNotification {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:AppStateFatalExceptionNotification.collectionNames)
     pub collectionNames: ::std::vec::Vec<::std::string::String>,
     // @@protoc_insertion_point(field:AppStateFatalExceptionNotification.timestamp)
@@ -32672,9 +32672,9 @@ impl ::protobuf::reflect::ProtobufValue for AppStateFatalExceptionNotification {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:InitialSecurityNotificationSettingSync)
+// @@protoc_insertion_point(binary:InitialSecurityNotificationSettingSync)
 pub struct InitialSecurityNotificationSettingSync {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:InitialSecurityNotificationSettingSync.securityNotificationEnabled)
     pub securityNotificationEnabled: ::std::option::Option<bool>,
     // special fields
@@ -32813,9 +32813,9 @@ impl ::protobuf::reflect::ProtobufValue for InitialSecurityNotificationSettingSy
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ContactsArrayMessage)
+// @@protoc_insertion_point(binary:ContactsArrayMessage)
 pub struct ContactsArrayMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ContactsArrayMessage.displayName)
     pub displayName: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ContactsArrayMessage.contacts)
@@ -33009,9 +33009,9 @@ impl ::protobuf::reflect::ProtobufValue for ContactsArrayMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HSMCurrency)
+// @@protoc_insertion_point(binary:HSMCurrency)
 pub struct HSMCurrency {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HSMCurrency.currencyCode)
     pub currencyCode: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:HSMCurrency.amount1000)
@@ -33204,9 +33204,9 @@ impl ::protobuf::reflect::ProtobufValue for HSMCurrency {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HSMDateTimeComponent)
+// @@protoc_insertion_point(binary:HSMDateTimeComponent)
 pub struct HSMDateTimeComponent {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HSMDateTimeComponent.dayOfWeek)
     pub dayOfWeek: ::std::option::Option<::protobuf::EnumOrUnknown<hsmdate_time_component::HSMDateTimeComponentDayOfWeekType>>,
     // @@protoc_insertion_point(field:HSMDateTimeComponent.year)
@@ -33572,7 +33572,7 @@ impl ::protobuf::reflect::ProtobufValue for HSMDateTimeComponent {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `HSMDateTimeComponent`
+/// Nested binary and enums of binary `HSMDateTimeComponent`
 pub mod hsmdate_time_component {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:HSMDateTimeComponent.HSMDateTimeComponentDayOfWeekType)
@@ -33717,9 +33717,9 @@ pub mod hsmdate_time_component {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HSMDateTimeUnixEpoch)
+// @@protoc_insertion_point(binary:HSMDateTimeUnixEpoch)
 pub struct HSMDateTimeUnixEpoch {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HSMDateTimeUnixEpoch.timestamp)
     pub timestamp: ::std::option::Option<i64>,
     // special fields
@@ -33858,9 +33858,9 @@ impl ::protobuf::reflect::ProtobufValue for HSMDateTimeUnixEpoch {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HSMDateTime)
+// @@protoc_insertion_point(binary:HSMDateTime)
 pub struct HSMDateTime {
-    // message oneof groups
+    // binary oneof groups
     pub datetimeOneof: ::std::option::Option<hsmdate_time::DatetimeOneof>,
     // special fields
     // @@protoc_insertion_point(special_field:HSMDateTime.special_fields)
@@ -34106,7 +34106,7 @@ impl ::protobuf::reflect::ProtobufValue for HSMDateTime {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `HSMDateTime`
+/// Nested binary and enums of binary `HSMDateTime`
 pub mod hsmdate_time {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -34137,12 +34137,12 @@ pub mod hsmdate_time {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HSMLocalizableParameter)
+// @@protoc_insertion_point(binary:HSMLocalizableParameter)
 pub struct HSMLocalizableParameter {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HSMLocalizableParameter.default)
     pub default: ::std::option::Option<::std::string::String>,
-    // message oneof groups
+    // binary oneof groups
     pub paramOneof: ::std::option::Option<hsmlocalizable_parameter::ParamOneof>,
     // special fields
     // @@protoc_insertion_point(special_field:HSMLocalizableParameter.special_fields)
@@ -34440,7 +34440,7 @@ impl ::protobuf::reflect::ProtobufValue for HSMLocalizableParameter {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `HSMLocalizableParameter`
+/// Nested binary and enums of binary `HSMLocalizableParameter`
 pub mod hsmlocalizable_parameter {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -34471,9 +34471,9 @@ pub mod hsmlocalizable_parameter {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HighlyStructuredMessage)
+// @@protoc_insertion_point(binary:HighlyStructuredMessage)
 pub struct HighlyStructuredMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HighlyStructuredMessage.namespace)
     pub namespace: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:HighlyStructuredMessage.elementName)
@@ -34955,9 +34955,9 @@ impl ::protobuf::reflect::ProtobufValue for HighlyStructuredMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SendPaymentMessage)
+// @@protoc_insertion_point(binary:SendPaymentMessage)
 pub struct SendPaymentMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SendPaymentMessage.noteMessage)
     pub noteMessage: ::protobuf::MessageField<Message>,
     // @@protoc_insertion_point(field:SendPaymentMessage.requestMessageKey)
@@ -35116,9 +35116,9 @@ impl ::protobuf::reflect::ProtobufValue for SendPaymentMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:RequestPaymentMessage)
+// @@protoc_insertion_point(binary:RequestPaymentMessage)
 pub struct RequestPaymentMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:RequestPaymentMessage.noteMessage)
     pub noteMessage: ::protobuf::MessageField<Message>,
     // @@protoc_insertion_point(field:RequestPaymentMessage.currencyCodeIso4217)
@@ -35459,9 +35459,9 @@ impl ::protobuf::reflect::ProtobufValue for RequestPaymentMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DeclinePaymentRequestMessage)
+// @@protoc_insertion_point(binary:DeclinePaymentRequestMessage)
 pub struct DeclinePaymentRequestMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DeclinePaymentRequestMessage.key)
     pub key: ::protobuf::MessageField<MessageKey>,
     // special fields
@@ -35582,9 +35582,9 @@ impl ::protobuf::reflect::ProtobufValue for DeclinePaymentRequestMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:CancelPaymentRequestMessage)
+// @@protoc_insertion_point(binary:CancelPaymentRequestMessage)
 pub struct CancelPaymentRequestMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:CancelPaymentRequestMessage.key)
     pub key: ::protobuf::MessageField<MessageKey>,
     // special fields
@@ -35705,9 +35705,9 @@ impl ::protobuf::reflect::ProtobufValue for CancelPaymentRequestMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PaymentInviteMessage)
+// @@protoc_insertion_point(binary:PaymentInviteMessage)
 pub struct PaymentInviteMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PaymentInviteMessage.serviceType)
     pub serviceType: ::std::option::Option<::protobuf::EnumOrUnknown<payment_invite_message::PaymentInviteMessageServiceType>>,
     // @@protoc_insertion_point(field:PaymentInviteMessage.expiryTimestamp)
@@ -35885,7 +35885,7 @@ impl ::protobuf::reflect::ProtobufValue for PaymentInviteMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `PaymentInviteMessage`
+/// Nested binary and enums of binary `PaymentInviteMessage`
 pub mod payment_invite_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:PaymentInviteMessage.PaymentInviteMessageServiceType)
@@ -35951,9 +35951,9 @@ pub mod payment_invite_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:LiveLocationMessage)
+// @@protoc_insertion_point(binary:LiveLocationMessage)
 pub struct LiveLocationMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:LiveLocationMessage.degreesLatitude)
     pub degreesLatitude: ::std::option::Option<f64>,
     // @@protoc_insertion_point(field:LiveLocationMessage.degreesLongitude)
@@ -36441,9 +36441,9 @@ impl ::protobuf::reflect::ProtobufValue for LiveLocationMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:StickerMessage)
+// @@protoc_insertion_point(binary:StickerMessage)
 pub struct StickerMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:StickerMessage.url)
     pub url: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:StickerMessage.fileSha256)
@@ -37218,16 +37218,16 @@ impl ::protobuf::reflect::ProtobufValue for StickerMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:FourRowTemplate)
+// @@protoc_insertion_point(binary:FourRowTemplate)
 pub struct FourRowTemplate {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:FourRowTemplate.content)
     pub content: ::protobuf::MessageField<HighlyStructuredMessage>,
     // @@protoc_insertion_point(field:FourRowTemplate.footer)
     pub footer: ::protobuf::MessageField<HighlyStructuredMessage>,
     // @@protoc_insertion_point(field:FourRowTemplate.buttons)
     pub buttons: ::std::vec::Vec<TemplateButton>,
-    // message oneof groups
+    // binary oneof groups
     pub title: ::std::option::Option<four_row_template::Title>,
     // special fields
     // @@protoc_insertion_point(special_field:FourRowTemplate.special_fields)
@@ -37725,7 +37725,7 @@ impl ::protobuf::reflect::ProtobufValue for FourRowTemplate {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `FourRowTemplate`
+/// Nested binary and enums of binary `FourRowTemplate`
 pub mod four_row_template {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -37762,9 +37762,9 @@ pub mod four_row_template {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HydratedFourRowTemplate)
+// @@protoc_insertion_point(binary:HydratedFourRowTemplate)
 pub struct HydratedFourRowTemplate {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HydratedFourRowTemplate.hydratedContentText)
     pub hydratedContentText: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:HydratedFourRowTemplate.hydratedFooterText)
@@ -37773,7 +37773,7 @@ pub struct HydratedFourRowTemplate {
     pub hydratedButtons: ::std::vec::Vec<HydratedTemplateButton>,
     // @@protoc_insertion_point(field:HydratedFourRowTemplate.templateId)
     pub templateId: ::std::option::Option<::std::string::String>,
-    // message oneof groups
+    // binary oneof groups
     pub title: ::std::option::Option<hydrated_four_row_template::Title>,
     // special fields
     // @@protoc_insertion_point(special_field:HydratedFourRowTemplate.special_fields)
@@ -38391,7 +38391,7 @@ impl ::protobuf::reflect::ProtobufValue for HydratedFourRowTemplate {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `HydratedFourRowTemplate`
+/// Nested binary and enums of binary `HydratedFourRowTemplate`
 pub mod hydrated_four_row_template {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -38428,14 +38428,14 @@ pub mod hydrated_four_row_template {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:TemplateMessage)
+// @@protoc_insertion_point(binary:TemplateMessage)
 pub struct TemplateMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:TemplateMessage.contextInfo)
     pub contextInfo: ::protobuf::MessageField<ContextInfo>,
     // @@protoc_insertion_point(field:TemplateMessage.hydratedTemplate)
     pub hydratedTemplate: ::protobuf::MessageField<HydratedFourRowTemplate>,
-    // message oneof groups
+    // binary oneof groups
     pub format: ::std::option::Option<template_message::Format>,
     // special fields
     // @@protoc_insertion_point(special_field:TemplateMessage.special_fields)
@@ -38715,7 +38715,7 @@ impl ::protobuf::reflect::ProtobufValue for TemplateMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `TemplateMessage`
+/// Nested binary and enums of binary `TemplateMessage`
 pub mod template_message {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -38746,9 +38746,9 @@ pub mod template_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:TemplateButtonReplyMessage)
+// @@protoc_insertion_point(binary:TemplateButtonReplyMessage)
 pub struct TemplateButtonReplyMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:TemplateButtonReplyMessage.selectedId)
     pub selectedId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:TemplateButtonReplyMessage.selectedDisplayText)
@@ -39014,9 +39014,9 @@ impl ::protobuf::reflect::ProtobufValue for TemplateButtonReplyMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:CatalogSnapshot)
+// @@protoc_insertion_point(binary:CatalogSnapshot)
 pub struct CatalogSnapshot {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:CatalogSnapshot.catalogImage)
     pub catalogImage: ::protobuf::MessageField<ImageMessage>,
     // @@protoc_insertion_point(field:CatalogSnapshot.title)
@@ -39245,9 +39245,9 @@ impl ::protobuf::reflect::ProtobufValue for CatalogSnapshot {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ProductSnapshot)
+// @@protoc_insertion_point(binary:ProductSnapshot)
 pub struct ProductSnapshot {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ProductSnapshot.productImage)
     pub productImage: ::protobuf::MessageField<ImageMessage>,
     // @@protoc_insertion_point(field:ProductSnapshot.productId)
@@ -39857,9 +39857,9 @@ impl ::protobuf::reflect::ProtobufValue for ProductSnapshot {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ProductMessage)
+// @@protoc_insertion_point(binary:ProductMessage)
 pub struct ProductMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ProductMessage.product)
     pub product: ::protobuf::MessageField<ProductSnapshot>,
     // @@protoc_insertion_point(field:ProductMessage.businessOwnerJid)
@@ -40180,9 +40180,9 @@ impl ::protobuf::reflect::ProtobufValue for ProductMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:OrderMessage)
+// @@protoc_insertion_point(binary:OrderMessage)
 pub struct OrderMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:OrderMessage.orderId)
     pub orderId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:OrderMessage.thumbnail)
@@ -40193,7 +40193,7 @@ pub struct OrderMessage {
     pub status: ::std::option::Option<::protobuf::EnumOrUnknown<order_message::OrderMessageOrderStatus>>,
     // @@protoc_insertion_point(field:OrderMessage.surface)
     pub surface: ::std::option::Option<::protobuf::EnumOrUnknown<order_message::OrderMessageOrderSurface>>,
-    // @@protoc_insertion_point(field:OrderMessage.message)
+    // @@protoc_insertion_point(field:OrderMessage.binary)
     pub message: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:OrderMessage.orderTitle)
     pub orderTitle: ::std::option::Option<::std::string::String>,
@@ -40358,7 +40358,7 @@ impl OrderMessage {
         self.surface = ::std::option::Option::Some(::protobuf::EnumOrUnknown::new(v));
     }
 
-    // optional string message = 6;
+    // optional string binary = 6;
 
     pub fn message(&self) -> &str {
         match self.message.as_ref() {
@@ -40586,7 +40586,7 @@ impl OrderMessage {
             |m: &mut OrderMessage| { &mut m.surface },
         ));
         fields.push(::protobuf::reflect::rt::v2::make_option_accessor::<_, _>(
-            "message",
+            "binary",
             |m: &OrderMessage| { &m.message },
             |m: &mut OrderMessage| { &mut m.message },
         ));
@@ -40834,7 +40834,7 @@ impl ::protobuf::reflect::ProtobufValue for OrderMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `OrderMessage`
+/// Nested binary and enums of binary `OrderMessage`
 pub mod order_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:OrderMessage.OrderMessageOrderStatus)
@@ -40944,9 +40944,9 @@ pub mod order_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Row)
+// @@protoc_insertion_point(binary:Row)
 pub struct Row {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Row.title)
     pub title: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Row.description)
@@ -41210,9 +41210,9 @@ impl ::protobuf::reflect::ProtobufValue for Row {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Section)
+// @@protoc_insertion_point(binary:Section)
 pub struct Section {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Section.title)
     pub title: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Section.rows)
@@ -41387,9 +41387,9 @@ impl ::protobuf::reflect::ProtobufValue for Section {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Product)
+// @@protoc_insertion_point(binary:Product)
 pub struct Product {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Product.productId)
     pub productId: ::std::option::Option<::std::string::String>,
     // special fields
@@ -41545,9 +41545,9 @@ impl ::protobuf::reflect::ProtobufValue for Product {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ProductSection)
+// @@protoc_insertion_point(binary:ProductSection)
 pub struct ProductSection {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ProductSection.title)
     pub title: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ProductSection.products)
@@ -41722,9 +41722,9 @@ impl ::protobuf::reflect::ProtobufValue for ProductSection {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ProductListHeaderImage)
+// @@protoc_insertion_point(binary:ProductListHeaderImage)
 pub struct ProductListHeaderImage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ProductListHeaderImage.productId)
     pub productId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ProductListHeaderImage.jpegThumbnail)
@@ -41934,9 +41934,9 @@ impl ::protobuf::reflect::ProtobufValue for ProductListHeaderImage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ProductListInfo)
+// @@protoc_insertion_point(binary:ProductListInfo)
 pub struct ProductListInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ProductListInfo.productSections)
     pub productSections: ::std::vec::Vec<ProductSection>,
     // @@protoc_insertion_point(field:ProductListInfo.headerImage)
@@ -42130,9 +42130,9 @@ impl ::protobuf::reflect::ProtobufValue for ProductListInfo {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ListMessage)
+// @@protoc_insertion_point(binary:ListMessage)
 pub struct ListMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ListMessage.title)
     pub title: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ListMessage.description)
@@ -42546,7 +42546,7 @@ impl ::protobuf::reflect::ProtobufValue for ListMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ListMessage`
+/// Nested binary and enums of binary `ListMessage`
 pub mod list_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:ListMessage.ListMessageListType)
@@ -42608,9 +42608,9 @@ pub mod list_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:SingleSelectReply)
+// @@protoc_insertion_point(binary:SingleSelectReply)
 pub struct SingleSelectReply {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:SingleSelectReply.selectedRowId)
     pub selectedRowId: ::std::option::Option<::std::string::String>,
     // special fields
@@ -42766,9 +42766,9 @@ impl ::protobuf::reflect::ProtobufValue for SingleSelectReply {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ListResponseMessage)
+// @@protoc_insertion_point(binary:ListResponseMessage)
 pub struct ListResponseMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ListResponseMessage.title)
     pub title: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ListResponseMessage.listType)
@@ -43055,7 +43055,7 @@ impl ::protobuf::reflect::ProtobufValue for ListResponseMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ListResponseMessage`
+/// Nested binary and enums of binary `ListResponseMessage`
 pub mod list_response_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:ListResponseMessage.ListResponseMessageListType)
@@ -43113,16 +43113,16 @@ pub mod list_response_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Header)
+// @@protoc_insertion_point(binary:Header)
 pub struct Header {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Header.title)
     pub title: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Header.subtitle)
     pub subtitle: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Header.hasMediaAttachment)
     pub hasMediaAttachment: ::std::option::Option<bool>,
-    // message oneof groups
+    // binary oneof groups
     pub media: ::std::option::Option<header::Media>,
     // special fields
     // @@protoc_insertion_point(special_field:Header.special_fields)
@@ -43639,7 +43639,7 @@ impl ::protobuf::reflect::ProtobufValue for Header {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `Header`
+/// Nested binary and enums of binary `Header`
 pub mod header {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -43674,9 +43674,9 @@ pub mod header {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Body)
+// @@protoc_insertion_point(binary:Body)
 pub struct Body {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Body.text)
     pub text: ::std::option::Option<::std::string::String>,
     // special fields
@@ -43832,9 +43832,9 @@ impl ::protobuf::reflect::ProtobufValue for Body {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Footer)
+// @@protoc_insertion_point(binary:Footer)
 pub struct Footer {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Footer.text)
     pub text: ::std::option::Option<::std::string::String>,
     // special fields
@@ -43990,9 +43990,9 @@ impl ::protobuf::reflect::ProtobufValue for Footer {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ShopMessage)
+// @@protoc_insertion_point(binary:ShopMessage)
 pub struct ShopMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ShopMessage.id)
     pub id: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ShopMessage.surface)
@@ -44224,7 +44224,7 @@ impl ::protobuf::reflect::ProtobufValue for ShopMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ShopMessage`
+/// Nested binary and enums of binary `ShopMessage`
 pub mod shop_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:ShopMessage.ShopMessageSurface)
@@ -44290,9 +44290,9 @@ pub mod shop_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:CollectionMessage)
+// @@protoc_insertion_point(binary:CollectionMessage)
 pub struct CollectionMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:CollectionMessage.bizJid)
     pub bizJid: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:CollectionMessage.id)
@@ -44539,9 +44539,9 @@ impl ::protobuf::reflect::ProtobufValue for CollectionMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:NativeFlowButton)
+// @@protoc_insertion_point(binary:NativeFlowButton)
 pub struct NativeFlowButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:NativeFlowButton.name)
     pub name: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:NativeFlowButton.buttonParamsJson)
@@ -44751,9 +44751,9 @@ impl ::protobuf::reflect::ProtobufValue for NativeFlowButton {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:NativeFlowMessage)
+// @@protoc_insertion_point(binary:NativeFlowMessage)
 pub struct NativeFlowMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:NativeFlowMessage.buttons)
     pub buttons: ::std::vec::Vec<NativeFlowButton>,
     // @@protoc_insertion_point(field:NativeFlowMessage.messageParamsJson)
@@ -44965,9 +44965,9 @@ impl ::protobuf::reflect::ProtobufValue for NativeFlowMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:InteractiveMessage)
+// @@protoc_insertion_point(binary:InteractiveMessage)
 pub struct InteractiveMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:InteractiveMessage.header)
     pub header: ::protobuf::MessageField<Header>,
     // @@protoc_insertion_point(field:InteractiveMessage.body)
@@ -44976,7 +44976,7 @@ pub struct InteractiveMessage {
     pub footer: ::protobuf::MessageField<Footer>,
     // @@protoc_insertion_point(field:InteractiveMessage.contextInfo)
     pub contextInfo: ::protobuf::MessageField<ContextInfo>,
-    // message oneof groups
+    // binary oneof groups
     pub interactiveMessage: ::std::option::Option<interactive_message::InteractiveMessage>,
     // special fields
     // @@protoc_insertion_point(special_field:InteractiveMessage.special_fields)
@@ -45357,7 +45357,7 @@ impl ::protobuf::reflect::ProtobufValue for InteractiveMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `InteractiveMessage`
+/// Nested binary and enums of binary `InteractiveMessage`
 pub mod interactive_message {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -45390,9 +45390,9 @@ pub mod interactive_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:GroupInviteMessage)
+// @@protoc_insertion_point(binary:GroupInviteMessage)
 pub struct GroupInviteMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:GroupInviteMessage.groupJid)
     pub groupJid: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:GroupInviteMessage.inviteCode)
@@ -45859,7 +45859,7 @@ impl ::protobuf::reflect::ProtobufValue for GroupInviteMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `GroupInviteMessage`
+/// Nested binary and enums of binary `GroupInviteMessage`
 pub mod group_invite_message {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:GroupInviteMessage.GroupInviteMessageGroupType)
@@ -45917,12 +45917,12 @@ pub mod group_invite_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DeviceSentMessage)
+// @@protoc_insertion_point(binary:DeviceSentMessage)
 pub struct DeviceSentMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DeviceSentMessage.destinationJid)
     pub destinationJid: ::std::option::Option<::std::string::String>,
-    // @@protoc_insertion_point(field:DeviceSentMessage.message)
+    // @@protoc_insertion_point(field:DeviceSentMessage.binary)
     pub message: ::protobuf::MessageField<Message>,
     // @@protoc_insertion_point(field:DeviceSentMessage.phash)
     pub phash: ::std::option::Option<::std::string::String>,
@@ -46023,7 +46023,7 @@ impl DeviceSentMessage {
             |m: &mut DeviceSentMessage| { &mut m.destinationJid },
         ));
         fields.push(::protobuf::reflect::rt::v2::make_message_field_accessor::<_, Message>(
-            "message",
+            "binary",
             |m: &DeviceSentMessage| { &m.message },
             |m: &mut DeviceSentMessage| { &mut m.message },
         ));
@@ -46148,10 +46148,10 @@ impl ::protobuf::reflect::ProtobufValue for DeviceSentMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:FutureProofMessage)
+// @@protoc_insertion_point(binary:FutureProofMessage)
 pub struct FutureProofMessage {
-    // message fields
-    // @@protoc_insertion_point(field:FutureProofMessage.message)
+    // binary fields
+    // @@protoc_insertion_point(field:FutureProofMessage.binary)
     pub message: ::protobuf::MessageField<Message>,
     // special fields
     // @@protoc_insertion_point(special_field:FutureProofMessage.special_fields)
@@ -46173,7 +46173,7 @@ impl FutureProofMessage {
         let mut fields = ::std::vec::Vec::with_capacity(1);
         let mut oneofs = ::std::vec::Vec::with_capacity(0);
         fields.push(::protobuf::reflect::rt::v2::make_message_field_accessor::<_, Message>(
-            "message",
+            "binary",
             |m: &FutureProofMessage| { &m.message },
             |m: &mut FutureProofMessage| { &mut m.message },
         ));
@@ -46271,9 +46271,9 @@ impl ::protobuf::reflect::ProtobufValue for FutureProofMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ButtonText)
+// @@protoc_insertion_point(binary:ButtonText)
 pub struct ButtonText {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ButtonText.displayText)
     pub displayText: ::std::option::Option<::std::string::String>,
     // special fields
@@ -46429,9 +46429,9 @@ impl ::protobuf::reflect::ProtobufValue for ButtonText {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:NativeFlowInfo)
+// @@protoc_insertion_point(binary:NativeFlowInfo)
 pub struct NativeFlowInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:NativeFlowInfo.name)
     pub name: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:NativeFlowInfo.paramsJson)
@@ -46641,9 +46641,9 @@ impl ::protobuf::reflect::ProtobufValue for NativeFlowInfo {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Button)
+// @@protoc_insertion_point(binary:Button)
 pub struct Button {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Button.buttonId)
     pub buttonId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Button.buttonText)
@@ -46876,7 +46876,7 @@ impl ::protobuf::reflect::ProtobufValue for Button {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `Button`
+/// Nested binary and enums of binary `Button`
 pub mod button {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:Button.ButtonType)
@@ -46938,9 +46938,9 @@ pub mod button {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ButtonsMessage)
+// @@protoc_insertion_point(binary:ButtonsMessage)
 pub struct ButtonsMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ButtonsMessage.contentText)
     pub contentText: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ButtonsMessage.footerText)
@@ -46951,7 +46951,7 @@ pub struct ButtonsMessage {
     pub buttons: ::std::vec::Vec<Button>,
     // @@protoc_insertion_point(field:ButtonsMessage.headerType)
     pub headerType: ::std::option::Option<::protobuf::EnumOrUnknown<buttons_message::ButtonsMessageHeaderType>>,
-    // message oneof groups
+    // binary oneof groups
     pub header: ::std::option::Option<buttons_message::Header>,
     // special fields
     // @@protoc_insertion_point(special_field:ButtonsMessage.special_fields)
@@ -47572,7 +47572,7 @@ impl ::protobuf::reflect::ProtobufValue for ButtonsMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ButtonsMessage`
+/// Nested binary and enums of binary `ButtonsMessage`
 pub mod buttons_message {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -47682,16 +47682,16 @@ pub mod buttons_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ButtonsResponseMessage)
+// @@protoc_insertion_point(binary:ButtonsResponseMessage)
 pub struct ButtonsResponseMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ButtonsResponseMessage.selectedButtonId)
     pub selectedButtonId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ButtonsResponseMessage.contextInfo)
     pub contextInfo: ::protobuf::MessageField<ContextInfo>,
     // @@protoc_insertion_point(field:ButtonsResponseMessage.type)
     pub type_: ::std::option::Option<::protobuf::EnumOrUnknown<buttons_response_message::ButtonsResponseMessageType>>,
-    // message oneof groups
+    // binary oneof groups
     pub response: ::std::option::Option<buttons_response_message::Response>,
     // special fields
     // @@protoc_insertion_point(special_field:ButtonsResponseMessage.special_fields)
@@ -47975,7 +47975,7 @@ impl ::protobuf::reflect::ProtobufValue for ButtonsResponseMessage {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `ButtonsResponseMessage`
+/// Nested binary and enums of binary `ButtonsResponseMessage`
 pub mod buttons_response_message {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -48057,9 +48057,9 @@ pub mod buttons_response_message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ReactionMessage)
+// @@protoc_insertion_point(binary:ReactionMessage)
 pub struct ReactionMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ReactionMessage.key)
     pub key: ::protobuf::MessageField<MessageKey>,
     // @@protoc_insertion_point(field:ReactionMessage.text)
@@ -48325,9 +48325,9 @@ impl ::protobuf::reflect::ProtobufValue for ReactionMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:StickerSyncRMRMessage)
+// @@protoc_insertion_point(binary:StickerSyncRMRMessage)
 pub struct StickerSyncRMRMessage {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:StickerSyncRMRMessage.filehash)
     pub filehash: ::std::vec::Vec<::std::string::String>,
     // @@protoc_insertion_point(field:StickerSyncRMRMessage.rmrSource)
@@ -48538,9 +48538,9 @@ impl ::protobuf::reflect::ProtobufValue for StickerSyncRMRMessage {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Message)
+// @@protoc_insertion_point(binary:Message)
 pub struct Message {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Message.conversation)
     pub conversation: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:Message.senderKeyDistributionMessage)
@@ -49418,9 +49418,9 @@ impl ::protobuf::reflect::ProtobufValue for Message {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ActionLink)
+// @@protoc_insertion_point(binary:ActionLink)
 pub struct ActionLink {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ActionLink.url)
     pub url: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:ActionLink.buttonTitle)
@@ -49630,9 +49630,9 @@ impl ::protobuf::reflect::ProtobufValue for ActionLink {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:DisappearingMode)
+// @@protoc_insertion_point(binary:DisappearingMode)
 pub struct DisappearingMode {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:DisappearingMode.initiator)
     pub initiator: ::std::option::Option<::protobuf::EnumOrUnknown<disappearing_mode::DisappearingModeInitiator>>,
     // special fields
@@ -49773,7 +49773,7 @@ impl ::protobuf::reflect::ProtobufValue for DisappearingMode {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `DisappearingMode`
+/// Nested binary and enums of binary `DisappearingMode`
 pub mod disappearing_mode {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:DisappearingMode.DisappearingModeInitiator)
@@ -49835,9 +49835,9 @@ pub mod disappearing_mode {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PBMediaData)
+// @@protoc_insertion_point(binary:PBMediaData)
 pub struct PBMediaData {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PBMediaData.mediaKey)
     pub mediaKey: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:PBMediaData.mediaKeyTimestamp)
@@ -50192,9 +50192,9 @@ impl ::protobuf::reflect::ProtobufValue for PBMediaData {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PaymentBackground)
+// @@protoc_insertion_point(binary:PaymentBackground)
 pub struct PaymentBackground {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PaymentBackground.id)
     pub id: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:PaymentBackground.fileLength)
@@ -50684,7 +50684,7 @@ impl ::protobuf::reflect::ProtobufValue for PaymentBackground {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `PaymentBackground`
+/// Nested binary and enums of binary `PaymentBackground`
 pub mod payment_background {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:PaymentBackground.PaymentBackgroundType)
@@ -50742,9 +50742,9 @@ pub mod payment_background {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Money)
+// @@protoc_insertion_point(binary:Money)
 pub struct Money {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Money.value)
     pub value: ::std::option::Option<i64>,
     // @@protoc_insertion_point(field:Money.offset)
@@ -50974,9 +50974,9 @@ impl ::protobuf::reflect::ProtobufValue for Money {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HydratedQuickReplyButton)
+// @@protoc_insertion_point(binary:HydratedQuickReplyButton)
 pub struct HydratedQuickReplyButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HydratedQuickReplyButton.displayText)
     pub displayText: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:HydratedQuickReplyButton.id)
@@ -51186,9 +51186,9 @@ impl ::protobuf::reflect::ProtobufValue for HydratedQuickReplyButton {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HydratedURLButton)
+// @@protoc_insertion_point(binary:HydratedURLButton)
 pub struct HydratedURLButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HydratedURLButton.displayText)
     pub displayText: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:HydratedURLButton.url)
@@ -51398,9 +51398,9 @@ impl ::protobuf::reflect::ProtobufValue for HydratedURLButton {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HydratedCallButton)
+// @@protoc_insertion_point(binary:HydratedCallButton)
 pub struct HydratedCallButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HydratedCallButton.displayText)
     pub displayText: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:HydratedCallButton.phoneNumber)
@@ -51610,12 +51610,12 @@ impl ::protobuf::reflect::ProtobufValue for HydratedCallButton {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:HydratedTemplateButton)
+// @@protoc_insertion_point(binary:HydratedTemplateButton)
 pub struct HydratedTemplateButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:HydratedTemplateButton.index)
     pub index: ::std::option::Option<u32>,
-    // message oneof groups
+    // binary oneof groups
     pub hydratedButton: ::std::option::Option<hydrated_template_button::HydratedButton>,
     // special fields
     // @@protoc_insertion_point(special_field:HydratedTemplateButton.special_fields)
@@ -51963,7 +51963,7 @@ impl ::protobuf::reflect::ProtobufValue for HydratedTemplateButton {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `HydratedTemplateButton`
+/// Nested binary and enums of binary `HydratedTemplateButton`
 pub mod hydrated_template_button {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -51996,9 +51996,9 @@ pub mod hydrated_template_button {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:QuickReplyButton)
+// @@protoc_insertion_point(binary:QuickReplyButton)
 pub struct QuickReplyButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:QuickReplyButton.displayText)
     pub displayText: ::protobuf::MessageField<HighlyStructuredMessage>,
     // @@protoc_insertion_point(field:QuickReplyButton.id)
@@ -52173,9 +52173,9 @@ impl ::protobuf::reflect::ProtobufValue for QuickReplyButton {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:URLButton)
+// @@protoc_insertion_point(binary:URLButton)
 pub struct URLButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:URLButton.displayText)
     pub displayText: ::protobuf::MessageField<HighlyStructuredMessage>,
     // @@protoc_insertion_point(field:URLButton.url)
@@ -52315,9 +52315,9 @@ impl ::protobuf::reflect::ProtobufValue for URLButton {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:CallButton)
+// @@protoc_insertion_point(binary:CallButton)
 pub struct CallButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:CallButton.displayText)
     pub displayText: ::protobuf::MessageField<HighlyStructuredMessage>,
     // @@protoc_insertion_point(field:CallButton.phoneNumber)
@@ -52457,12 +52457,12 @@ impl ::protobuf::reflect::ProtobufValue for CallButton {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:TemplateButton)
+// @@protoc_insertion_point(binary:TemplateButton)
 pub struct TemplateButton {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:TemplateButton.index)
     pub index: ::std::option::Option<u32>,
-    // message oneof groups
+    // binary oneof groups
     pub button: ::std::option::Option<template_button::Button>,
     // special fields
     // @@protoc_insertion_point(special_field:TemplateButton.special_fields)
@@ -52810,7 +52810,7 @@ impl ::protobuf::reflect::ProtobufValue for TemplateButton {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `TemplateButton`
+/// Nested binary and enums of binary `TemplateButton`
 pub mod template_button {
 
     #[derive(Clone,PartialEq,Debug)]
@@ -52843,9 +52843,9 @@ pub mod template_button {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Location)
+// @@protoc_insertion_point(binary:Location)
 pub struct Location {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Location.degreesLatitude)
     pub degreesLatitude: ::std::option::Option<f64>,
     // @@protoc_insertion_point(field:Location.degreesLongitude)
@@ -53075,9 +53075,9 @@ impl ::protobuf::reflect::ProtobufValue for Location {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Point)
+// @@protoc_insertion_point(binary:Point)
 pub struct Point {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Point.xDeprecated)
     pub xDeprecated: ::std::option::Option<i32>,
     // @@protoc_insertion_point(field:Point.yDeprecated)
@@ -53327,9 +53327,9 @@ impl ::protobuf::reflect::ProtobufValue for Point {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:CompanionProps)
+// @@protoc_insertion_point(binary:CompanionProps)
 pub struct CompanionProps {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:CompanionProps.os)
     pub os: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:CompanionProps.version)
@@ -53580,7 +53580,7 @@ impl ::protobuf::reflect::ProtobufValue for CompanionProps {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `CompanionProps`
+/// Nested binary and enums of binary `CompanionProps`
 pub mod companion_props {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:CompanionProps.CompanionPropsPlatformType)
@@ -53682,9 +53682,9 @@ pub mod companion_props {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ADVSignedDeviceIdentityHMAC)
+// @@protoc_insertion_point(binary:ADVSignedDeviceIdentityHMAC)
 pub struct ADVSignedDeviceIdentityHMAC {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ADVSignedDeviceIdentityHMAC.details)
     pub details: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:ADVSignedDeviceIdentityHMAC.hmac)
@@ -53894,9 +53894,9 @@ impl ::protobuf::reflect::ProtobufValue for ADVSignedDeviceIdentityHMAC {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ADVSignedDeviceIdentity)
+// @@protoc_insertion_point(binary:ADVSignedDeviceIdentity)
 pub struct ADVSignedDeviceIdentity {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ADVSignedDeviceIdentity.details)
     pub details: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:ADVSignedDeviceIdentity.accountSignatureKey)
@@ -54214,9 +54214,9 @@ impl ::protobuf::reflect::ProtobufValue for ADVSignedDeviceIdentity {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ADVDeviceIdentity)
+// @@protoc_insertion_point(binary:ADVDeviceIdentity)
 pub struct ADVDeviceIdentity {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ADVDeviceIdentity.rawId)
     pub rawId: ::std::option::Option<u32>,
     // @@protoc_insertion_point(field:ADVDeviceIdentity.timestamp)
@@ -54429,9 +54429,9 @@ impl ::protobuf::reflect::ProtobufValue for ADVDeviceIdentity {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ADVSignedKeyIndexList)
+// @@protoc_insertion_point(binary:ADVSignedKeyIndexList)
 pub struct ADVSignedKeyIndexList {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ADVSignedKeyIndexList.details)
     pub details: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:ADVSignedKeyIndexList.accountSignature)
@@ -54641,9 +54641,9 @@ impl ::protobuf::reflect::ProtobufValue for ADVSignedKeyIndexList {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:ADVKeyIndexList)
+// @@protoc_insertion_point(binary:ADVKeyIndexList)
 pub struct ADVKeyIndexList {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:ADVKeyIndexList.rawId)
     pub rawId: ::std::option::Option<u32>,
     // @@protoc_insertion_point(field:ADVKeyIndexList.timestamp)
@@ -54873,9 +54873,9 @@ impl ::protobuf::reflect::ProtobufValue for ADVKeyIndexList {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MessageKey)
+// @@protoc_insertion_point(binary:MessageKey)
 pub struct MessageKey {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MessageKey.remoteJid)
     pub remoteJid: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:MessageKey.fromMe)
@@ -55176,9 +55176,9 @@ impl ::protobuf::reflect::ProtobufValue for MessageKey {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:Reaction)
+// @@protoc_insertion_point(binary:Reaction)
 pub struct Reaction {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:Reaction.key)
     pub key: ::protobuf::MessageField<MessageKey>,
     // @@protoc_insertion_point(field:Reaction.text)
@@ -55481,9 +55481,9 @@ impl ::protobuf::reflect::ProtobufValue for Reaction {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:UserReceipt)
+// @@protoc_insertion_point(binary:UserReceipt)
 pub struct UserReceipt {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:UserReceipt.userJid)
     pub userJid: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:UserReceipt.receiptTimestamp)
@@ -55789,9 +55789,9 @@ impl ::protobuf::reflect::ProtobufValue for UserReceipt {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:StatusPSA)
+// @@protoc_insertion_point(binary:StatusPSA)
 pub struct StatusPSA {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:StatusPSA.campaignId)
     pub campaignId: ::std::option::Option<::std::string::String>,
     // @@protoc_insertion_point(field:StatusPSA.campaignExpirationTimestamp)
@@ -55987,9 +55987,9 @@ impl ::protobuf::reflect::ProtobufValue for StatusPSA {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PhotoChange)
+// @@protoc_insertion_point(binary:PhotoChange)
 pub struct PhotoChange {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PhotoChange.oldPhoto)
     pub oldPhoto: ::std::option::Option<::std::vec::Vec<u8>>,
     // @@protoc_insertion_point(field:PhotoChange.newPhoto)
@@ -56236,9 +56236,9 @@ impl ::protobuf::reflect::ProtobufValue for PhotoChange {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:MediaData)
+// @@protoc_insertion_point(binary:MediaData)
 pub struct MediaData {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:MediaData.localPath)
     pub localPath: ::std::option::Option<::std::string::String>,
     // special fields
@@ -56394,9 +56394,9 @@ impl ::protobuf::reflect::ProtobufValue for MediaData {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:WebFeatures)
+// @@protoc_insertion_point(binary:WebFeatures)
 pub struct WebFeatures {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:WebFeatures.labelsDisplay)
     pub labelsDisplay: ::std::option::Option<::protobuf::EnumOrUnknown<web_features::WebFeaturesFlag>>,
     // @@protoc_insertion_point(field:WebFeatures.voipIndividualOutgoing)
@@ -58297,7 +58297,7 @@ impl ::protobuf::reflect::ProtobufValue for WebFeatures {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `WebFeatures`
+/// Nested binary and enums of binary `WebFeatures`
 pub mod web_features {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:WebFeatures.WebFeaturesFlag)
@@ -58363,12 +58363,12 @@ pub mod web_features {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:NotificationMessageInfo)
+// @@protoc_insertion_point(binary:NotificationMessageInfo)
 pub struct NotificationMessageInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:NotificationMessageInfo.key)
     pub key: ::protobuf::MessageField<MessageKey>,
-    // @@protoc_insertion_point(field:NotificationMessageInfo.message)
+    // @@protoc_insertion_point(field:NotificationMessageInfo.binary)
     pub message: ::protobuf::MessageField<Message>,
     // @@protoc_insertion_point(field:NotificationMessageInfo.messageTimestamp)
     pub messageTimestamp: ::std::option::Option<u64>,
@@ -58454,7 +58454,7 @@ impl NotificationMessageInfo {
             |m: &mut NotificationMessageInfo| { &mut m.key },
         ));
         fields.push(::protobuf::reflect::rt::v2::make_message_field_accessor::<_, Message>(
-            "message",
+            "binary",
             |m: &NotificationMessageInfo| { &m.message },
             |m: &mut NotificationMessageInfo| { &mut m.message },
         ));
@@ -58596,9 +58596,9 @@ impl ::protobuf::reflect::ProtobufValue for NotificationMessageInfo {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:WebNotificationsInfo)
+// @@protoc_insertion_point(binary:WebNotificationsInfo)
 pub struct WebNotificationsInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:WebNotificationsInfo.timestamp)
     pub timestamp: ::std::option::Option<u64>,
     // @@protoc_insertion_point(field:WebNotificationsInfo.unreadChats)
@@ -58835,9 +58835,9 @@ impl ::protobuf::reflect::ProtobufValue for WebNotificationsInfo {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:PaymentInfo)
+// @@protoc_insertion_point(binary:PaymentInfo)
 pub struct PaymentInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:PaymentInfo.currencyDeprecated)
     pub currencyDeprecated: ::std::option::Option<::protobuf::EnumOrUnknown<payment_info::PaymentInfoCurrency>>,
     // @@protoc_insertion_point(field:PaymentInfo.amount1000)
@@ -59408,7 +59408,7 @@ impl ::protobuf::reflect::ProtobufValue for PaymentInfo {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `PaymentInfo`
+/// Nested binary and enums of binary `PaymentInfo`
 pub mod payment_info {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:PaymentInfo.PaymentInfoCurrency)
@@ -59722,12 +59722,12 @@ pub mod payment_info {
 }
 
 #[derive(PartialEq,Clone,Default,Debug)]
-// @@protoc_insertion_point(message:WebMessageInfo)
+// @@protoc_insertion_point(binary:WebMessageInfo)
 pub struct WebMessageInfo {
-    // message fields
+    // binary fields
     // @@protoc_insertion_point(field:WebMessageInfo.key)
     pub key: ::protobuf::MessageField<MessageKey>,
-    // @@protoc_insertion_point(field:WebMessageInfo.message)
+    // @@protoc_insertion_point(field:WebMessageInfo.binary)
     pub message: ::protobuf::MessageField<Message>,
     // @@protoc_insertion_point(field:WebMessageInfo.messageTimestamp)
     pub messageTimestamp: ::std::option::Option<u64>,
@@ -60332,7 +60332,7 @@ impl WebMessageInfo {
             |m: &mut WebMessageInfo| { &mut m.key },
         ));
         fields.push(::protobuf::reflect::rt::v2::make_message_field_accessor::<_, Message>(
-            "message",
+            "binary",
             |m: &WebMessageInfo| { &m.message },
             |m: &mut WebMessageInfo| { &mut m.message },
         ));
@@ -61036,7 +61036,7 @@ impl ::protobuf::reflect::ProtobufValue for WebMessageInfo {
     type RuntimeType = ::protobuf::reflect::rt::RuntimeTypeMessage<Self>;
 }
 
-/// Nested message and enums of message `WebMessageInfo`
+/// Nested binary and enums of binary `WebMessageInfo`
 pub mod web_message_info {
     #[derive(Clone,Copy,PartialEq,Eq,Debug,Hash)]
     // @@protoc_insertion_point(enum:WebMessageInfo.WebMessageInfoStatus)

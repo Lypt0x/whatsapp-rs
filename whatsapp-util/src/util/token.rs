@@ -18,7 +18,7 @@ pub const SINGLE_BYTE: [&str; 235] = [
     "id",
     "broadcast",
     "status",
-    "message",
+    "binary",
     "notification",
     "notify",
     "to",
