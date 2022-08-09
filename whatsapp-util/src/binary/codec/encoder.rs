@@ -35,6 +35,7 @@ impl NodeEncoder {
 
 		let description = self.node.description().to_owned();
 		self.write_string(&description)?;
+
 		self.write_attributes(self.node.attributes_clone().into_iter().collect())?;
 
 		if self.node.content::<Value>().is_some() {
@@ -192,7 +193,7 @@ impl NodeEncoder {
 	}
 
 	fn write_string_token(&mut self, input: &str, token: i32) -> Result<()> {
-		self.buffer.write_i32(token);
+		self.buffer.write_u8(token as u8);
 		self.write_string_length(input);
 
 		let mut last_code_point = 0;
@@ -202,6 +203,7 @@ impl NodeEncoder {
 
 			if idx % 2 != 0 {
 				last_code_point |= bin_code_point;
+
 				self.buffer.write_u8(last_code_point as u8);
 			} else {
 				last_code_point = bin_code_point << 4;
@@ -230,9 +232,9 @@ impl NodeEncoder {
 	}
 
 	fn write_string_length(&mut self, input: &str) {
-		let rounded = ((input.len() as f64).ceil() / 2f64) as u32;
+		let rounded = ((input.len() as f64) / 2f64).ceil() as u32;
 		if input.len() % 2 == 1 {
-			self.buffer.write_u32((rounded | 0x80) as u32);
+			self.buffer.write_u8((rounded | 0x80) as u8);
 			return
 		}
 

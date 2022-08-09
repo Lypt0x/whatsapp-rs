@@ -1,4 +1,4 @@
-use serde_json::Value;
+pub use serde_json::Value;
 use std::collections::HashMap;
 
 #[derive(serde::Serialize, serde::Deserialize, Debug, Eq, PartialEq, Clone)]
@@ -11,6 +11,15 @@ pub struct Node {
 pub struct NodeContentIterator<'a> {
     inclusive: bool,
     content: &'a Value
+}
+
+pub trait DataExt {
+    fn description(&self) -> &str;
+    fn size(&self) -> usize;
+    fn id(&self) -> Option<&str>;
+    fn content<'a, T>(&'a self) -> Option<T>
+        where
+            &'a str: TryInto<T>;
 }
 
 impl Node {
@@ -36,32 +45,13 @@ impl Node {
             content: Value::Null,
         }
     }
-
-    pub fn description(&self) -> &str {
-        self.description.as_str()
+    
+    pub fn children(&self) -> Vec<&Value> {
+        self.into_iter().collect()
     }
 
     pub fn attributes_clone(&self) -> HashMap<String, Value> {
         self.attributes.clone()
-    }
-
-    pub fn size(&self) -> usize {
-        2 * self.attributes.len() + !self.content.is_null() as usize + 1
-    }
-
-    pub fn id(&self) -> Option<&str> {
-        self.attributes.get("id").and_then(Value::as_str)
-    }
-
-    pub fn content<'a, T>(&'a self) -> Option<T>
-    where
-        &'a str: TryInto<T>
-    {
-        self.content.as_str()?.try_into().ok()
-    }
-
-    pub fn children(&self) -> Vec<&Value> {
-        self.into_iter().collect()
     }
 
     pub fn find_description(&self, description: &str) -> Option<&Value> {
@@ -88,6 +78,62 @@ impl Node {
         serde_json::from_value(node).ok()
     }
 
+}
+
+impl DataExt for Node {
+    fn description(&self) -> &str {
+        self.description.as_str()
+    }
+
+    fn size(&self) -> usize {
+        2 * self.attributes.len() + !self.content.is_null() as usize + 1
+    }
+
+    fn id(&self) -> Option<&str> {
+        self.description.as_str().into()
+    }
+
+    fn content<'a, T>(&'a self) -> Option<T>
+        where
+            &'a str: TryInto<T>
+    {
+        self.content.as_str()?.try_into().ok()
+    }
+}
+
+impl DataExt for Value {
+    fn description(&self) -> &str {
+        self["description"].as_str().unwrap_or_default()
+    }
+
+    fn size(&self) -> usize {
+        2 * self["attributes"].as_object().unwrap().len()
+            + !self["content"].is_null() as usize + 1
+    }
+
+    fn id(&self) -> Option<&str> {
+        self["attributes"].as_object().unwrap()["id"].as_str()
+    }
+
+    fn content<'a, T>(&'a self) -> Option<T> where &'a str: TryInto<T> {
+        self["content"].as_str()?.try_into().ok()
+    }
+}
+
+impl TryFrom<Value> for Node {
+    type Error = anyhow::Error;
+
+    fn try_from(value: Value) -> Result<Self, Self::Error> {
+        Ok(serde_json::from_value(value)?)
+    }
+}
+
+impl<'a> TryInto<Node> for &'a Value {
+    type Error = anyhow::Error;
+
+    fn try_into(self) -> Result<Node, Self::Error> {
+        Ok(serde_json::from_value(self.clone())?)
+    }
 }
 
 impl<'a> IntoIterator for &'a Node {

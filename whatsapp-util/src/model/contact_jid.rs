@@ -136,7 +136,7 @@ declare_server! {
     Group => "g.us"
     Broadcast => "broadcast"
     Call => "call"
-    Whatsapp => "c.whatsapp.net"
+    Whatsapp => "s.whatsapp.net"
 
     Companion => ""
     Business => ""

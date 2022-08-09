@@ -1,46 +1,23 @@
 use tokio_tungstenite::tungstenite::http::header::*;
 use tokio_tungstenite::tungstenite::http::Request;
-use whatsapp_rs_util::binary::session::Session;
 
-use crate::client::auth::AuthHandler;
 use anyhow::Result;
-use futures::{SinkExt, StreamExt};
 use tokio_tungstenite::tungstenite::Message;
-use whatsapp_rs_util::model::credentials::Credentials;
-use whatsapp_rs_util::binary::handshake::Handshake;
-use whatsapp_rs_util::binary;
-use whatsapp_rs_util::binary::codec::NodeCodec;
+use futures::StreamExt;
 
-use whatsapp_rs_util::protobuf::whatsapp::{ClientHello, MessageParser};
+use crate::client::stream::Stream;
 
 pub mod auth;
-
-#[derive(Default, PartialEq)]
-pub enum State {
-    #[default]
-    Handshake,
-
-    Connected,
-}
+pub mod stream;
 
 #[derive(Default)]
 pub struct WebSocketClient {
-    session: Option<Session>,
-    credentials: Credentials,
-    state: State,
+    stream: Option<Stream>,
 }
 
 impl WebSocketClient {
-    pub fn init(&mut self, session: Session) {
-        self.session = Some(session);
-    }
-
     pub async fn connect(&mut self) -> Result<()> {
-        if self.session.is_none() {
-            self.session = Some(Session::default())
-        }
-
-        let (mut websocket, _) = tokio_tungstenite::connect_async(
+        let (ws, _) = tokio_tungstenite::connect_async(
             Request::builder()
                 .uri("wss://web.whatsapp.com/ws/chat")
                 .header(SEC_WEBSOCKET_KEY, "3zbjYJIgtLc2sjZJLvyK+Q==")
@@ -49,65 +26,23 @@ impl WebSocketClient {
                 .header(UPGRADE, "websocket")
                 .header(SEC_WEBSOCKET_VERSION, "13")
                 .header(ORIGIN, "https://web.whatsapp.com")
-                .body(())
-                .unwrap(),
-        )
-        .await?;
+                .body(())?,
+        ).await?;
+        
+        self.stream = Stream::new(None, ws).into();
+        let stream = self.stream.as_mut().unwrap();
 
-        let mut hello = ClientHello::new();
-        hello.ephemeral = self
-            .credentials
-            .ephemeral_keypair
-            .public
-            .to_bytes()
-            .to_vec()
-            .into();
-        let hello_handshake = Handshake::create_hello_handshake(hello);
-        let encoded_hello = binary::codec::encode_frame(true, &hello_handshake.write_to_bytes()?)?;
-        websocket.send(Message::Binary(encoded_hello)).await?;
+        stream.send_hello().await?;
 
-        while let Some(message) = websocket.next().await {
+        Ok(while let Some(message) = stream.ws().next().await {
             match message.as_ref().expect("Failure at receive") {
                 Message::Binary(payload) => {
-                    if payload.as_slice() == [136, 2, 3, 243] {
-                        println!("Server closed connection");
-                        break;
-                    }
-
-                    let message = binary::codec::decode_frame(payload);
-                    if message.is_empty() {
-                        println!("Could not decode binary");
-                        break;
-                    }
-
-                    if self.state == State::Handshake {
-                        println!("Logging in..");
-
-                        let decoded = message.first().expect("Decode failure");
-
-                        let mut auth =
-                            AuthHandler::new(&mut self.session.as_mut().unwrap().store, &mut self.credentials);
-
-                        auth.login(decoded, &mut websocket).await?;
-
-                        self.state = State::Connected;
-                    } else {
-                        println!("Connected, node");
-                        let mut decoder = NodeCodec { store: &mut self.session.as_mut().unwrap().store };
-
-                        for decoded in message {
-                            println!("{:?}", decoder.decode(&decoded));
-                        }
-
-                        break;
-                    }
+                    stream.process(&payload).await?
                 }
                 _ => {
-                    println!("Unknown binary received: {message:?}")
+                    println!("Unknown binary received")
                 }
             }
-        }
-
-        Ok(())
+        })
     }
 }

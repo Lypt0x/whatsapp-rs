@@ -9,5 +9,7 @@ edition = "2021"
 anyhow = "1.0.58"
 tokio = { version = "1.20.0", features = ["full"] }
 futures = "0.3.21"
+async-trait = "0.1.57"
 tokio-tungstenite = { version = "0.17.2", features = ["native-tls"] }
 whatsapp-rs-util = { path = "../whatsapp-util" }
+qr2term = "0.3.0"

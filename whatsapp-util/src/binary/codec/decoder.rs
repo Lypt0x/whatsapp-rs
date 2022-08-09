@@ -7,7 +7,6 @@ pub struct NodeDecoder {
 impl NodeDecoder {
 	pub fn decode(&mut self) -> Result<Node> {
 		let token = self.buffer.read_u8() & 2;
-
 		if token != 0 {
 			let data = deflate::deflate_bytes({
 				let remaining = self.buffer.len() - self.buffer.get_rpos();
@@ -51,8 +50,11 @@ impl NodeDecoder {
 		let mut map = HashMap::new();
 
 		(2..size).step_by(2).try_for_each(|_| {
+			
 			let key = self.read_string()?;
+			
 			let value = self.read(true)?;
+			
 			map.insert(key, value);
 
 			Result::<_>::Ok(())
@@ -66,15 +68,17 @@ impl NodeDecoder {
 			return Ok(token);
 		}
 
-		bail!("Could not read string")
+		bail!("not able to read string")
 	}
 
 	fn read(&mut self, parse: bool) -> Result<Value> {
 		let tag = self.buffer.read_u8() as i32;
 
-		Ok(match tag {
+		let result = match tag {
 			tag::LIST_EMPTY => Value::Null,
-			tag::COMPANION_JID => self.read_companion_jid()?,
+			tag::COMPANION_JID => {
+				self.read_companion_jid()?
+			},
 			tag::LIST_EIGHT => {
 				let size = self.buffer.read_u8() as u32;
 				self.read_list(size)?
@@ -83,18 +87,23 @@ impl NodeDecoder {
 				let size = self.buffer.read_u16() as u32;
 				self.read_list(size)?
 			}
-			tag::JID_PAIR => self.read_jid_pair()?,
-			tag::HEX_EIGHT => self.read_hex_string(),
+			tag::JID_PAIR => {
+				self.read_jid_pair()?
+			},
+			tag::HEX_EIGHT => {
+				self.read_hex_string()
+			},
 			tag::BINARY_EIGHT => {
-				let size = self.buffer.read_u8() as u32;
+				let size = self.buffer.read_u8() as usize;
+				
 				self.read_string_until(size, parse)?
 			}
 			tag::BINARY_TWENTY => {
-				let size = self.read_string_custom_length();
+				let size = self.read_string_custom_length() as usize;
 				self.read_string_until(size, parse)?
 			}
 			tag::BINARY_THIRTY_TWO => {
-				let size = self.buffer.read_u16() as u32;
+				let size = self.buffer.read_u16() as usize;
 				self.read_string_until(size, parse)?
 			}
 			tag::NIBBLE_EIGHT => self.read_nibble(),
@@ -102,7 +111,9 @@ impl NodeDecoder {
 				let token = self.read_string_from_token(tag);
 				Value::String(token.to_owned())
 			}
-		})
+		};
+
+		Ok(result)
 	}
 
 	fn read_nibble(&mut self) -> Value {
@@ -112,9 +123,12 @@ impl NodeDecoder {
 		let end = 127 & number;
 
 		let output = String::with_capacity((2 * end - start) as usize);
+		let mut output = self.read_string_mode(output, false);
+		if start != 0 {
+			output.insert(output.capacity() - 1, token::HEX[(self.buffer.read_u8() >> 4) as usize]);
+		}
 
-		let output = self.read_string_mode(output, false);
-
+		
 		Value::String(output)
 	}
 
@@ -124,14 +138,22 @@ impl NodeDecoder {
 			+ self.buffer.read_u8() as u32
 	}
 
-	fn read_string_until(&mut self, size: u32, parse: bool) -> Result<Value> {
-		let data = self.buffer.read_bytes(size as usize);
-		Ok(if parse {
-			Value::String(String::from_utf8(data)?)
-		} else {
-			// SAFETY: We do not handle non-parseable strings at all
-			// So, whether the String is corrupted or not, we don't need to worry
-			unsafe { Value::String(String::from_utf8_unchecked(data)) }
+	fn read_string_until(&mut self, size: usize, parse: bool) -> Result<Value> {
+		let data = self.buffer.read_bytes(size);
+		let parsed = String::from_utf8(data.clone());
+
+		Ok(match (parse, parsed) {
+
+			// we yeet LRM for now
+			(true, Ok(output)) => Value::String(output.replace("\u{200E}", "")),
+
+			// switch to optional parsing
+			(false, optional) => match optional {
+				Ok(output) => Value::String(output),
+				Err(_) => serde_json::to_value(data)?
+			},
+
+			_ => unreachable!()
 		})
 	}
 
@@ -142,8 +164,10 @@ impl NodeDecoder {
 		let end = 127 & number;
 
 		let output = String::with_capacity((2 * end - start) as usize);
-
-		let output = self.read_string_mode(output, true);
+		let mut output = self.read_string_mode(output, true);
+		if start != 0 {
+			output.insert(output.capacity() - 1, token::HEX[(self.buffer.read_u8() >> 4) as usize]);
+		}
 
 		Value::String(output)
 	}
@@ -199,9 +223,12 @@ impl NodeDecoder {
 		let device = self.buffer.read_u8() as u32;
 		let user = self.read_string()?;
 
-		Ok(serde_json::to_value(ContactJid::from_companion(
+		match serde_json::to_value(ContactJid::from_companion(
 			user, device, agent,
-		))?)
+		)) {
+			Ok(x) => {Ok(x)}
+			Err(_) => { bail!("Failure deserializing companion jid")}
+		}
 	}
 
 	fn read_size(&mut self, token: u32) -> u32 {

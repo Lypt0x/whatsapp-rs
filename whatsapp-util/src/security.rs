@@ -3,6 +3,8 @@ pub mod hash;
 pub mod hkdf;
 pub mod keypair;
 
+pub use base64;
+
 pub use crate::Result;
 pub use crate::util::error::Error;
 

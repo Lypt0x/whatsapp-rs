@@ -11,59 +11,36 @@ use crate::protobuf::whatsapp::{
     HandshakeMessage, UserAgent, WebInfo,
 };
 
-use crate::security::keypair::Keypair;
 use crate::security::{aes, hash, hkdf};
 
-use protobuf::{EnumOrUnknown, Message, MessageField};
+pub use protobuf::{EnumOrUnknown, Message, MessageField};
 use crate::model::SessionStore;
 
 pub use crate::Result;
 use crate::security::AsNonce;
 use super::{PROTOCOL, PROLOGUE};
 
-pub struct Handshake<'a> {
-    pub credentials: &'a mut Credentials,
-    pub session: &'a mut SessionStore,
-
+pub struct Handshake {
     hash: [u8; 32],
     crypto_key: [u8; 32],
     salt: [u8; 32],
     iv: u64,
 }
 
-impl<'a> Handshake<'a> {
-    pub fn new(store: &'a mut SessionStore, credentials: &'a mut Credentials) -> Self {
+impl Handshake {
+    pub fn new(ephemeral_public: [u8; 32]) -> Self {
         let auth = Self {
-            credentials,
-            session: store,
             hash: PROTOCOL,
             crypto_key: PROTOCOL,
             salt: PROTOCOL,
             iv: 0,
         };
-
-        let public_key = auth.credentials.ephemeral_keypair.public.to_bytes();
-        auth.rehash(&PROLOGUE).rehash(&public_key)
+        
+        auth.rehash(&PROLOGUE).rehash(&ephemeral_public)
     }
 
-    pub fn finish(&mut self) -> Result<()> {
-        self.session.update(self.salt)
-    }
-
-    pub fn ephemeral_key(&'_ self) -> &'_ Keypair {
-        &self.credentials.ephemeral_keypair
-    }
-
-    pub fn ephemeral_key_mut(&'_ mut self) -> &'_ mut Keypair {
-        &mut self.credentials.ephemeral_keypair
-    }
-
-    pub fn noise_key(&'_ self) -> &'_ Keypair {
-        &self.credentials.noise_keypair
-    }
-
-    pub fn noise_key_mut(&'_ mut self) -> &'_ mut Keypair {
-        &mut self.credentials.noise_keypair
+    pub fn finish(&mut self, store: &mut SessionStore) -> Result<()> {
+        store.update(self.salt)
     }
 
     pub fn decrypt(&mut self, input: &[u8]) -> Result<Vec<u8>> {
@@ -118,12 +95,12 @@ impl<'a> Handshake<'a> {
     }
 
     // TODO: Make dis thing lil bit less hardcoded lol
-    pub fn create_user_payload(&self) -> Result<ClientPayload> {
+    pub fn create_user_payload(credentials: &Credentials) -> Result<ClientPayload> {
         let mut user_agent = UserAgent::new();
         let mut app_version = AppVersion::new();
         app_version.primary = 2.into();
-        app_version.secondary = 2226.into();
-        app_version.tertiary = 4.into();
+        app_version.secondary = 2228.into();
+        app_version.tertiary = 14.into();
 
         user_agent.platform = EnumOrUnknown::from(UserAgentPlatform::WEB).into();
         user_agent.appVersion = MessageField::some(app_version);
@@ -134,48 +111,44 @@ impl<'a> Handshake<'a> {
 
         let mut reg_data = CompanionRegData::new();
         let mut companion_props = CompanionProps::new();
-        companion_props.os = String::from("whatsapprs").into();
+        companion_props.os = String::from("WhatsappWeb4j").into();
         companion_props.platformType =
             EnumOrUnknown::from(CompanionPropsPlatformType::DESKTOP).into();
-        companion_props.requireFullSync = false.into();
+        companion_props.requireFullSync = true.into();
 
-        reg_data.eRegid = self
-            .credentials
-            .registration_id
-            .to_be_bytes()
-            .to_vec()
-            .into();
-        reg_data.eKeytype = vec![5u8].into();
-        reg_data.eIdent = self
-            .credentials
+        // id
+        reg_data.eRegid = Self::int_to_bytes(credentials.registration_id as i32, 4).into();
+
+        // keyType
+        reg_data.eKeytype = Self::int_to_bytes(5, 1).into();
+
+        // identifier
+        reg_data.eIdent = credentials
             .identity_keypair
             .public
             .as_bytes()
             .to_vec()
             .into();
-        reg_data.eSkeyId = self
-            .credentials
-            .signed_keypair
-            .key_id
-            .to_be_bytes()
-            .to_vec()
-            .into();
-        reg_data.eSkeyVal = self
-            .credentials
-            .signed_keypair
+
+        // signatureId
+        reg_data.eSkeyId = Self::int_to_bytes(credentials.registration_id as i32, 3).into();
+
+        // signaturePublicKey
+        reg_data.eSkeyVal = credentials
+            .signed_keypair // signed instead
             .key_pair
-            .public
-            .as_bytes()
+            .public_key.public_key_bytes().unwrap()
             .to_vec()
             .into();
-        reg_data.eSkeySig = self
-            .credentials
+
+        // signature
+        reg_data.eSkeySig = credentials
             .signed_keypair
             .signature
             .as_ref()
             .to_vec()
             .into();
-        reg_data.buildHash = hash::md5(b"2.2226.4").to_vec().into();
+        reg_data.buildHash = hash::md5(b"2.2228.14").to_vec().into();
         reg_data.companionProps = companion_props.write_to_bytes()?.to_vec().into();
 
         let mut client_payload = ClientPayload::new();
@@ -188,5 +161,15 @@ impl<'a> Handshake<'a> {
         client_payload.connectReason =
             EnumOrUnknown::from(ClientPayloadConnectReason::USER_ACTIVATED).into();
         Ok(client_payload)
+    }
+
+    fn int_to_bytes(mut input: i32, length: usize) -> Vec<u8> {
+        let mut result = vec![0; length];
+        for i in (0..length).rev() {
+            result[i] = (0xFF & input) as u8;
+            input >>= 8;
+        }
+
+        result
     }
 }

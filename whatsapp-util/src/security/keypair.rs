@@ -1,33 +1,40 @@
-use ed25519_dalek::Signer;
 pub use ed25519_dalek::{Keypair as EdKeypair, Signature};
+use libsignal_protocol::{KeyPair, PrivateKey};
 use rand_core::OsRng;
-pub use x25519_dalek::{PublicKey, ReusableSecret, SharedSecret};
+pub use x25519_dalek::{PublicKey, SharedSecret};
+use x25519_dalek::StaticSecret;
 
 pub struct Keypair {
     pub public: PublicKey,
-    secret: ReusableSecret,
+    pub secret: StaticSecret,
 
     shared_container: Vec<SharedSecret>,
 }
 
 pub struct SignedKeypair {
-    pub key_pair: EdKeypair,
-    pub signature: Signature,
+    pub key_pair: KeyPair,
+    pub signature: Box<[u8]>,
     pub key_id: i32,
 }
 
 impl SignedKeypair {
-    pub fn new(identity_public: [u8; 32], key_id: i32) -> Self {
-        let sign_keys = EdKeypair::generate(&mut OsRng);
-        let mut pub_key = [0u8; 33];
+    pub fn new(identity_public: &Keypair, key_id: i32) -> Self {
+        let private_key = PrivateKey::deserialize(
+            &identity_public.secret.to_bytes()
+        ).expect("TODO: yeet message");
 
-        pub_key[1..].copy_from_slice(&identity_public);
-        pub_key[0] = 5;
+        let public_key = private_key.public_key().unwrap();
 
-        let signature = sign_keys.sign(&pub_key);
+        let mut signal_public = [0u8; 33];
+        signal_public[1..].copy_from_slice(public_key.public_key_bytes().unwrap());
+        signal_public[0] = 5;
+
+        let signature = private_key.calculate_signature(
+            &signal_public, &mut OsRng
+        ).unwrap();
 
         Self {
-            key_pair: sign_keys,
+            key_pair: KeyPair::new(public_key, private_key),
             signature,
             key_id,
         }
@@ -38,7 +45,7 @@ pub struct PublicKeyWrapper(pub PublicKey);
 
 impl Default for Keypair {
     fn default() -> Self {
-        let secret = ReusableSecret::new(OsRng);
+        let secret = StaticSecret::new(OsRng);
         let public = PublicKey::from(&secret);
 
         Self {
