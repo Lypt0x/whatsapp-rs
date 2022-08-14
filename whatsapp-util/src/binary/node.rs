@@ -1,5 +1,6 @@
 pub use serde_json::Value;
 use std::collections::HashMap;
+use crate::model::ContactJid;
 
 #[derive(serde::Serialize, serde::Deserialize, Debug, Eq, PartialEq, Clone)]
 pub struct Node {
@@ -20,6 +21,22 @@ pub trait DataExt {
     fn content<'a, T>(&'a self) -> Option<T>
         where
             &'a str: TryInto<T>;
+
+    fn has_content(&self) -> bool;
+
+    fn content_as_value(&self) -> &Value;
+
+    fn content_array_nums(&self) -> Option<Vec<u8>>;
+
+    fn attribute(&self, key: &str) -> Option<&Value>;
+
+    fn error_code(&self) -> Option<u32> {
+        if self.id()? == "stream:error" {
+            return self.attribute("code")?.as_u64().and_then(|code| Some(code as u32));
+        }
+
+        None
+    }
 }
 
 impl Node {
@@ -74,9 +91,19 @@ impl Node {
         None
     }
 
+    pub fn parse_jid(jid: &Value) -> ContactJid {
+        let user = jid["user"].as_str().unwrap().to_string();
+        let device = jid["device"].as_u64().unwrap() as u32;
+        let agent = jid["agent"].as_u64().unwrap() as u32;
+
+        ContactJid::from_companion(user, device, agent)
+    }
+
     pub fn deserialize(node: Value) -> Option<Self> {
         serde_json::from_value(node).ok()
     }
+
+    pub fn serialize(node: Node) -> Option<Value> { serde_json::to_value(node).ok() }
 
 }
 
@@ -99,6 +126,27 @@ impl DataExt for Node {
     {
         self.content.as_str()?.try_into().ok()
     }
+
+    fn has_content(&self) -> bool {
+        !self.content.is_null()
+    }
+
+    fn content_as_value(&self) -> &Value {
+        &self.content
+    }
+
+    fn content_array_nums(&self) -> Option<Vec<u8>> {
+        match &self.content {
+            Value::Array(values) => {
+                Some(values.into_iter().map(|value| value.as_u64().unwrap() as u8).collect())
+            },
+            _ => None
+        }
+    }
+
+    fn attribute(&self, key: &str) -> Option<&Value> {
+        self.attributes.get(key)
+    }
 }
 
 impl DataExt for Value {
@@ -117,6 +165,24 @@ impl DataExt for Value {
 
     fn content<'a, T>(&'a self) -> Option<T> where &'a str: TryInto<T> {
         self["content"].as_str()?.try_into().ok()
+    }
+
+    fn has_content(&self) -> bool {
+        !self["content"].is_null()
+    }
+
+    fn content_as_value(&self) -> &Value {
+        &self["content"]
+    }
+
+    fn content_array_nums(&self) -> Option<Vec<u8>> {
+        self["content"].as_array().map(|val| {
+            val.into_iter().map(|v| v.as_u64().unwrap() as u8).collect()
+        })
+    }
+
+    fn attribute(&self, key: &str) -> Option<&Value> {
+        self["attributes"].get(key)
     }
 }
 

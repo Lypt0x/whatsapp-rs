@@ -1,9 +1,11 @@
-#[derive(Default, PartialEq)]
+#[derive(Default, PartialEq, Copy, Clone)]
 pub enum State {
 	#[default]
 	Hello,
 	Handshake,
-	Iq,
+	Connected,
+	Reconnect,
+	Closed,
 }
 
 impl State {

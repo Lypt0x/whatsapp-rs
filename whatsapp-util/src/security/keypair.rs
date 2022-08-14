@@ -3,14 +3,16 @@ use libsignal_protocol::{KeyPair, PrivateKey};
 use rand_core::OsRng;
 pub use x25519_dalek::{PublicKey, SharedSecret};
 use x25519_dalek::StaticSecret;
+use crate::Result;
 
+// For now, we mix some other crates that works with curve25519 as well
+#[derive(Clone)]
 pub struct Keypair {
     pub public: PublicKey,
     pub secret: StaticSecret,
-
-    shared_container: Vec<SharedSecret>,
 }
 
+#[derive(Clone)]
 pub struct SignedKeypair {
     pub key_pair: KeyPair,
     pub signature: Box<[u8]>,
@@ -51,29 +53,29 @@ impl Default for Keypair {
         Self {
             public,
             secret,
-            shared_container: vec![],
         }
     }
 }
 
 impl Keypair {
-    pub fn exchange<'a, T>(&mut self, their_key: T) -> &SharedSecret
+    pub fn exchange<T>(&mut self, their_key: T) -> SharedSecret
     where
         T: Into<PublicKeyWrapper>,
     {
         let public_key_wrapper: PublicKeyWrapper = their_key.into();
-        self.shared_container
-            .push(self.secret.diffie_hellman(&public_key_wrapper.0));
-        self.shared_container.last().unwrap()
+        self.secret.diffie_hellman(&public_key_wrapper.0)
     }
 
-    pub fn exchanges(&self) -> &[SharedSecret] {
-        self.shared_container.as_slice()
-    }
+}
 
-    pub fn clear_exchanges(&mut self) {
-        self.shared_container.clear();
-    }
+pub fn verify_signature(their_key: &[u8], message: &[u8], signature: &[u8]) -> Result<bool> {
+    let public = libsignal_protocol::PublicKey::from_djb_public_key_bytes(their_key)?;
+    Ok(public.verify_signature(message, signature).unwrap())
+}
+
+pub fn sign(key: &[u8], message: &[u8]) -> Result<Box<[u8]>> {
+    let private = libsignal_protocol::PrivateKey::deserialize(key)?;
+    Ok(private.calculate_signature(message, &mut OsRng)?)
 }
 
 impl From<[u8; 32]> for PublicKeyWrapper {

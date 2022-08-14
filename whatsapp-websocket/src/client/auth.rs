@@ -1,7 +1,6 @@
 use whatsapp_rs_util::binary::handshake::Handshake;
 
 use anyhow::Result;
-use tokio::sync::MutexGuard;
 use whatsapp_rs_util::model::Session;
 
 use whatsapp_rs_util::protobuf::whatsapp::MessageParser;
@@ -10,17 +9,16 @@ use whatsapp_rs_util::security::keypair::Keypair;
 
 pub struct AuthHandler;
 
-impl<'a> AuthHandler {
+impl AuthHandler {
     pub async fn create_login(
-        mut session: MutexGuard<'_, Session>,
+        session: &mut Session,
         payload: &[u8],
     ) -> Result<Vec<u8>> {
-        let mut handshake_auth = Handshake::new(session.credentials.ephemeral_public());
         let credentials = &mut session.credentials;
+        let mut handshake_auth = Handshake::new(credentials.ephemeral_public());
 
         let handshake = HandshakeMessage::parse_from_bytes(payload)?;
         handshake_auth.rehash_mut(handshake.serverHello.ephemeral());
-
 
         Self::mix_ephemeral_shared(
             &mut handshake_auth,
@@ -47,7 +45,7 @@ impl<'a> AuthHandler {
             handshake.serverHello.ephemeral()
         );
 
-        let user_payload = Handshake::create_user_payload(credentials)?.write_to_bytes()?;
+        let user_payload = Handshake::create_user_payload(&session)?.write_to_bytes()?;
         let encrypted_payload = handshake_auth.encrypt(&user_payload)?;
 
         let mut client_finish = ClientFinish::new();

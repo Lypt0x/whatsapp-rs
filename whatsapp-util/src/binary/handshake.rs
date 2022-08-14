@@ -1,4 +1,3 @@
-use crate::model::credentials::Credentials;
 use crate::protobuf::whatsapp::client_payload::{
     ClientPayloadConnectReason, ClientPayloadConnectType,
 };
@@ -14,7 +13,7 @@ use crate::protobuf::whatsapp::{
 use crate::security::{aes, hash, hkdf};
 
 pub use protobuf::{EnumOrUnknown, Message, MessageField};
-use crate::model::SessionStore;
+use crate::model::{Session, SessionStore};
 
 pub use crate::Result;
 use crate::security::AsNonce;
@@ -95,7 +94,7 @@ impl Handshake {
     }
 
     // TODO: Make dis thing lil bit less hardcoded lol
-    pub fn create_user_payload(credentials: &Credentials) -> Result<ClientPayload> {
+    pub fn create_user_payload(Session { credentials, store } : &Session) -> Result<ClientPayload> {
         let mut user_agent = UserAgent::new();
         let mut app_version = AppVersion::new();
         app_version.primary = 2.into();
@@ -111,7 +110,7 @@ impl Handshake {
 
         let mut reg_data = CompanionRegData::new();
         let mut companion_props = CompanionProps::new();
-        companion_props.os = String::from("WhatsappWeb4j").into();
+        companion_props.os = String::from("whatsapp-rs").into();
         companion_props.platformType =
             EnumOrUnknown::from(CompanionPropsPlatformType::DESKTOP).into();
         companion_props.requireFullSync = true.into();
@@ -155,11 +154,19 @@ impl Handshake {
         client_payload.passive = true.into();
         client_payload.userAgent = MessageField::some(user_agent);
         client_payload.webInfo = MessageField::some(web_info);
-        client_payload.regData = MessageField::some(reg_data);
+
+        if let Some(ref companion) = store.companion {
+            client_payload.username = companion.user.parse::<u64>().ok();
+            client_payload.device = companion.device.into();
+        } else {
+            client_payload.regData = MessageField::some(reg_data);
+        }
+
         client_payload.connectType =
             EnumOrUnknown::from(ClientPayloadConnectType::WIFI_UNKNOWN).into();
         client_payload.connectReason =
             EnumOrUnknown::from(ClientPayloadConnectReason::USER_ACTIVATED).into();
+
         Ok(client_payload)
     }
 

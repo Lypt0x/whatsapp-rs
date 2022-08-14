@@ -1,14 +1,19 @@
-use crate::security::{AsNonce, hkdf};
+use crate::model::ContactJid;
+use crate::protobuf::whatsapp::ADVSignedDeviceIdentity;
+use crate::security::{aes, AsNonce, hkdf};
 use crate::Result;
 
 // TODO: Support asynchronous r/w
-#[derive(Default)]
+#[derive(Debug, Default, Clone)]
 pub struct SessionStore {
 	pub decode_key: [u8; 32],
 	pub encode_key: [u8; 32],
 
 	pub read_cnt: u64,
 	pub write_cnt: u64,
+
+	pub companion: Option<ContactJid>,
+	pub companion_identity: Option<ADVSignedDeviceIdentity>,
 }
 
 pub enum TrafficType {
@@ -29,6 +34,22 @@ impl SessionStore {
 				(self.write_cnt-1).nonce()
 			}
 		}
+	}
+	
+	pub fn encrypt(&mut self, input: &[u8]) -> Result<Vec<u8>> {
+		aes::encrypt_no_hash(
+			self.encode_key,
+			self.count_nonce(TrafficType::Ingoing),
+			input,
+		)
+	}
+	
+	pub fn decrypt(&mut self, input: &[u8]) -> Result<Vec<u8>> {
+		aes::decrypt_no_hash(
+			self.decode_key,
+			self.count_nonce(TrafficType::Outgoing),
+			input,
+		)
 	}
 
 	pub fn update(&mut self, salt: [u8; 32]) -> Result<()> {

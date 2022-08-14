@@ -1,13 +1,14 @@
 use crate::security::keypair::{Keypair, SignedKeypair};
 use rand::Rng;
 
+#[derive(Clone)]
 pub struct Credentials {
     pub noise_keypair: Keypair,
     pub ephemeral_keypair: Keypair,
     pub identity_keypair: Keypair,
     pub signed_keypair: SignedKeypair,
     pub companion_secret: [u8; 32],
-
+    
     pub(crate) registration_id: u32,
 }
 

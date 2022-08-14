@@ -5,7 +5,15 @@ pub struct NodeDecoder {
 }
 
 impl NodeDecoder {
-	pub fn decode(&mut self) -> Result<Node> {
+	pub fn decode(input: &[u8]) -> Result<Node> {
+		Self {
+			buffer: ByteBuffer::from_bytes(input)
+		}.decode_internal()
+	}
+}
+
+impl NodeDecoder {
+	fn decode_internal(&mut self) -> Result<Node> {
 		let token = self.buffer.read_u8() & 2;
 		if token != 0 {
 			let data = deflate::deflate_bytes({
@@ -50,13 +58,10 @@ impl NodeDecoder {
 		let mut map = HashMap::new();
 
 		(2..size).step_by(2).try_for_each(|_| {
-			
 			let key = self.read_string()?;
-			
 			let value = self.read(true)?;
-			
-			map.insert(key, value);
 
+			map.insert(key, value);
 			Result::<_>::Ok(())
 		})?;
 
@@ -128,7 +133,6 @@ impl NodeDecoder {
 			output.insert(output.capacity() - 1, token::HEX[(self.buffer.read_u8() >> 4) as usize]);
 		}
 
-		
 		Value::String(output)
 	}
 

@@ -10,6 +10,15 @@ pub struct NodeEncoder {
 }
 
 impl NodeEncoder {
+	pub fn encode(node: Node) -> Result<Vec<u8>> {
+		Self {
+			node,
+			buffer: ByteBuffer::new()
+		}.encode_internal()
+	}
+}
+
+impl NodeEncoder {
 	pub fn new(node: Node) -> Self {
 		Self {
 			buffer: ByteBuffer::new(),
@@ -17,7 +26,7 @@ impl NodeEncoder {
 		}
 	}
 
-	pub fn encode(&mut self) -> Result<Vec<u8>> {
+	fn encode_internal(&mut self) -> Result<Vec<u8>> {
 		self.write_node()?;
 		let mut result = vec![0u8; 1 + self.buffer.len()];
 		result[1..].copy_from_slice(&self.buffer.to_bytes());
@@ -38,8 +47,13 @@ impl NodeEncoder {
 
 		self.write_attributes(self.node.attributes_clone().into_iter().collect())?;
 
-		if self.node.content::<Value>().is_some() {
-			self.write(self.node.content::<_>().unwrap())?;
+		if self.node.has_content() {
+			let mut inner = self.node.content_as_value().clone();
+			if let Value::Object(_) = inner {
+				inner = Value::Array(vec![inner]);
+			}
+
+			self.write(inner)?;
 		}
 
 		Ok(())
@@ -145,10 +159,22 @@ impl NodeEncoder {
 		Ok(match value {
 			Value::Null => self.buffer.write_u8(tag::LIST_EMPTY as u8),
 			Value::Bool(state) => self.write_string(if state { "true" } else { "false"})?,
-			Value::Number(num) => self.write_string(&num.to_string())?,
-			Value::String(input) => self.write_string(&input)?,
-			Value::Array(input) => self.write_list(serde_json::from_value(Value::Array(input))?)?,
-			Value::Object(value) => self.write_attributes(value)?,
+			Value::Number(num) => {
+				self.write_string(&num.to_string())?
+			},
+			Value::String(input) => {
+				self.write_string(&input)?
+			},
+			Value::Array(input) => {
+				if input.iter().all(|value| value.is_number()) {
+					let bytes = serde_json::from_value::<Vec<u8>>(Value::Array(input))?;
+					return Ok(self.write_bytes(&bytes))
+				}
+				self.write_list(serde_json::from_value(Value::Array(input))?)?
+			},
+			Value::Object(value) => {
+				self.write_attributes(value)?
+			},
 		})
 	}
 
@@ -167,6 +193,11 @@ impl NodeEncoder {
 			container.write_node()?;
 			Result::<_>::Ok(self.buffer.write_bytes(&container.buffer.to_bytes()))
 		})
+	}
+
+	fn write_bytes(&mut self, bytes: &[u8]) {
+		self.write_i64(bytes.len() as i64);
+		self.buffer.write_bytes(bytes);
 	}
 
 	fn write_double_byte_string(&mut self, input: &str) -> Result<bool> {

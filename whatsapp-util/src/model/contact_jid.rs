@@ -7,7 +7,7 @@ macro_rules! declare_server {
     (
         $($name:ident => $val:expr)*
     ) => {
-        #[derive(serde::Serialize, Copy, Clone)]
+        #[derive(serde::Serialize, Copy, Clone, Debug)]
         pub enum Server {
             $(
                 $name,
@@ -42,7 +42,7 @@ macro_rules! declare_server {
     };
 }
 
-#[derive(serde::Serialize)]
+#[derive(serde::Serialize, Clone, Debug)]
 pub struct ContactJid {
     pub user: String,
     pub server: Server,
