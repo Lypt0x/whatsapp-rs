@@ -1,5 +1,6 @@
 pub use serde_json::Value;
 use std::collections::HashMap;
+use std::fmt::Debug;
 use crate::model::ContactJid;
 
 #[derive(serde::Serialize, serde::Deserialize, Debug, Eq, PartialEq, Clone)]
@@ -14,7 +15,7 @@ pub struct NodeContentIterator<'a> {
     content: &'a Value
 }
 
-pub trait DataExt {
+pub trait DataExt : Debug {
     fn description(&self) -> &str;
     fn size(&self) -> usize;
     fn id(&self) -> Option<&str>;
@@ -32,7 +33,7 @@ pub trait DataExt {
 
     fn error_code(&self) -> Option<u32> {
         if self.id()? == "stream:error" {
-            return self.attribute("code")?.as_u64().and_then(|code| Some(code as u32));
+            return self.attribute("code")?.as_str()?.parse::<u32>().ok();
         }
 
         None
